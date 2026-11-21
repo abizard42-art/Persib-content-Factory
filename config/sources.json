@@ -1,0 +1,31 @@
+{
+  "official": [
+    {
+      "name": "Persib Official Website",
+      "url": "https://persib.co.id/",
+      "type": "club_official"
+    },
+    {
+      "name": "Persib Official Instagram",
+      "url": "https://www.instagram.com/persib/",
+      "type": "club_official_social"
+    },
+    {
+      "name": "Liga Indonesia Baru",
+      "url": "https://ligaindonesiabaru.com/",
+      "type": "competition_official"
+    },
+    {
+      "name": "PSSI",
+      "url": "https://www.pssi.org/",
+      "type": "federation_official"
+    }
+  ],
+  "media": [],
+  "source_policy": {
+    "record_publication_date": true,
+    "record_access_date": true,
+    "distinguish_fact_report_rumor_analysis": true,
+    "minimum_independent_confirmation_for_sensitive_claims": 2
+  }
+}
