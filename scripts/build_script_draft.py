@@ -23,6 +23,9 @@ def table_rows(block):
             rows.append([cell.strip() for cell in line.strip("|").split("|")])
     return rows[1:] if rows else []
 
+def checked(text, phrase):
+    return bool(re.search(rf"^\\s*-\\s*\\[x\\]\\s*{re.escape(phrase)}", text, re.I | re.M))
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", required=True)
@@ -45,12 +48,23 @@ def main():
     if not field(raw, "Disetujui oleh editor"):
         sys.exit("BLOCKED: Persetujuan editor belum diisi.")
 
-    sources = [r for r in table_rows(section(raw, "2. Pemeriksaan sumber")) if len(r) >= 4 and any(r)]
-    claims = [r for r in table_rows(section(raw, "4. Klaim dan batasan naskah")) if len(r) >= 3 and any(r)]
+    required_checks = [
+        "Sumber utama sudah dibuka dan diperiksa.",
+        "Fakta, laporan media, rumor, dan opini sudah dipisahkan.",
+        "Angle dan hook disetujui editor.",
+        "Konteks/koreksi editor sudah dimasukkan.",
+        "Kebutuhan visual dan izin aset sudah diperiksa.",
+    ]
+    missing = [item for item in required_checks if not checked(raw, item)]
+    if missing:
+        sys.exit("BLOCKED: Checklist persetujuan belum lengkap: " + "; ".join(missing))
+
+    sources = [r for r in table_rows(section(raw, "2. Pemeriksaan sumber")) if len(r) >= 4 and all(c.strip() for c in r[:4])]
+    claims = [r for r in table_rows(section(raw, "4. Klaim dan batasan naskah")) if len(r) >= 3 and all(c.strip() for c in r[:3])]
     if not sources:
-        sys.exit("BLOCKED: Isi minimal satu baris pada tabel Pemeriksaan sumber.")
+        sys.exit("BLOCKED: Isi semua kolom pada minimal satu baris tabel Pemeriksaan sumber.")
     if not claims:
-        sys.exit("BLOCKED: Isi minimal satu baris pada tabel Klaim dan batasan naskah.")
+        sys.exit("BLOCKED: Isi semua kolom pada minimal satu baris tabel Klaim dan batasan naskah.")
 
     topic = field(raw, "Judul kandidat") or source.stem
     safe = re.sub(r"[^a-zA-Z0-9_-]+", "-", source.stem).strip("-").lower()
