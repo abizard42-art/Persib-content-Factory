@@ -1,0 +1,21 @@
+{
+  "timezone": "Asia/Jakarta",
+  "shorts": {
+    "aspect_ratio": "9:16",
+    "target_duration_seconds": [30, 60],
+    "resolution": "1080x1920"
+  },
+  "long_video": {
+    "target_duration_minutes": [4, 8],
+    "resolution": "1920x1080"
+  },
+  "rendering": {
+    "strategy": "code_rendered",
+    "reuse_character_assets": true,
+    "generate_new_ai_visuals_per_episode": false
+  },
+  "publishing": {
+    "enabled": false,
+    "manual_approval_required": true
+  }
+}
