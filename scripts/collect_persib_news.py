@@ -69,7 +69,7 @@ def main():
         try:
             found = fetch(query)
         except Exception as exc:
-            sections.append(f"## {label}\\n\\n_Pengambilan feed gagal: {type(exc).__name__}: {exc}_\\n")
+            sections.append(f"## {label}\n\n_Pengambilan feed gagal: {type(exc).__name__}: {exc}_\n")
             continue
         rows = []
         for item in found:
@@ -80,28 +80,28 @@ def main():
             total += 1
             desc = item["description"][:500] if item["description"] else "Tidak ada ringkasan dari feed."
             rows.append(
-                f"### {len(rows)+1}. {item['title']}\\n"
-                f"- Media/sumber tertera: {item['source']}\\n"
-                f"- Waktu publikasi (sesuai feed): {item['published'] or 'Tidak tersedia'}\\n"
-                f"- Tautan artikel asli: {item['link']}\\n"
-                f"- Cuplikan: {desc}\\n"
-                f"- Status: **HASIL INDEKS — BELUM DIVERIFIKASI**\\n"
+                f"### {len(rows)+1}. {item['title']}\n"
+                f"- Media/sumber tertera: {item['source']}\n"
+                f"- Waktu publikasi (sesuai feed): {item['published'] or 'Tidak tersedia'}\n"
+                f"- Tautan artikel asli: {item['link']}\n"
+                f"- Cuplikan: {desc}\n"
+                f"- Status: **HASIL INDEKS — BELUM DIVERIFIKASI**\n"
             )
-        sections.append(f"## {label}\\n\\n" + ("\\n".join(rows) if rows else "_Belum ada hasil pada feed ini._") + "\\n")
+        sections.append(f"## {label}\n\n" + ("\n".join(rows) if rows else "_Belum ada hasil pada feed ini._") + "\n")
 
     content = (
-        f"# Persib News Monitor — {now:%d %B %Y, %H:%M WIB}\\n\\n"
-        f"- Dibuat otomatis: {now.isoformat(timespec='minutes')}\\n"
-        f"- Jumlah tautan unik: {total}\\n"
-        "- Status keseluruhan: **BAHAN RISET, BUKAN FAKTA TERVERIFIKASI**\\n"
-        "- Pengumpul memakai Google News RSS untuk menemukan artikel; verifikasi wajib dilakukan pada artikel/pengumuman asli.\\n"
-        "- Jangan mengubah rumor menjadi kepastian. Informasi cedera, sanksi, dan ketersediaan pemain perlu konfirmasi kuat.\\n"
-        "- Foto/video tidak otomatis boleh digunakan hanya karena muncul di artikel atau media sosial.\\n\\n"
-        + "\\n".join(sections)
-        + "\\n## Catatan editor\\n"
-        "- Angle yang dipilih: _menunggu keputusan editor_\\n"
-        "- Koreksi/konteks tambahan: _menunggu editor_\\n"
-        "- Status editorial: **PENDING**\\n"
+        f"# Persib News Monitor — {now:%d %B %Y, %H:%M WIB}\n\n"
+        f"- Dibuat otomatis: {now.isoformat(timespec='minutes')}\n"
+        f"- Jumlah tautan unik: {total}\n"
+        "- Status keseluruhan: **BAHAN RISET, BUKAN FAKTA TERVERIFIKASI**\n"
+        "- Pengumpul memakai Google News RSS untuk menemukan artikel; verifikasi wajib dilakukan pada artikel/pengumuman asli.\n"
+        "- Jangan mengubah rumor menjadi kepastian. Informasi cedera, sanksi, dan ketersediaan pemain perlu konfirmasi kuat.\n"
+        "- Foto/video tidak otomatis boleh digunakan hanya karena muncul di artikel atau media sosial.\n\n"
+        + "\n".join(sections)
+        + "\n## Catatan editor\n"
+        "- Angle yang dipilih: _menunggu keputusan editor_\n"
+        "- Koreksi/konteks tambahan: _menunggu editor_\n"
+        "- Status editorial: **PENDING**\n"
     )
     stamp = now.strftime("%Y-%m-%d-%H00")
     (OUT / f"{stamp}.md").write_text(content, encoding="utf-8")
