@@ -44,11 +44,11 @@ class StripHTML(HTMLParser):
 def clean_html(value):
     parser = StripHTML()
     parser.feed(unescape(value or ""))
-    return re.sub(r"\\s+", " ", " ".join(parser.parts)).strip()
+    return re.sub(r"\s+", " ", " ".join(parser.parts)).strip()
 
 def normalize_title(value):
     value = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode().lower()
-    value = re.sub(r"\\s+-\\s+[^-]+$", "", value)
+    value = re.sub(r"\s+-\s+[^-]+$", "", value)
     return re.sub(r"[^a-z0-9]+", " ", value).strip()
 
 def classify(title):
@@ -112,7 +112,7 @@ def render_board(items):
         "",
     ]
     if not ranked:
-        return "\\n".join(lines + ["_Belum ada kandidat dari feed yang berhasil diambil._", ""])
+        return "\n".join(lines + ["_Belum ada kandidat dari feed yang berhasil diambil._", ""])
     for category in ("TRANSFER", "KONDISI PEMAIN", "MATCH & JADWAL", "TAKTIK & STARTING XI", "UPDATE UMUM"):
         group = [x for x in ranked if x["category"] == category][:8]
         if not group:
@@ -136,7 +136,7 @@ def render_board(items):
         "- Status: **PENDING — tidak ada naskah atau publikasi otomatis**",
         "",
     ])
-    return "\\n".join(lines)
+    return "\n".join(lines)
 
 def main():
     now = datetime.now(TZ)
@@ -152,7 +152,7 @@ def main():
         try:
             found = fetch(query)
         except Exception as exc:
-            sections.append(f"## {label}\\n\\n_Pengambilan feed gagal: {type(exc).__name__}: {exc}_\\n")
+            sections.append(f"## {label}\n\n_Pengambilan feed gagal: {type(exc).__name__}: {exc}_\n")
             continue
         rows = []
         for item in found:
@@ -167,32 +167,32 @@ def main():
             by_title[fingerprint] = item
             desc = item["description"][:500] if item["description"] else "Tidak ada ringkasan dari feed."
             rows.append(
-                f"### {len(rows)+1}. {item['title']}\\n"
-                f"- Media/sumber tertera: {item['source']}\\n"
-                f"- Waktu publikasi (sesuai feed): {item['published'] or 'Tidak tersedia'}\\n"
-                f"- Tautan hasil feed: {item['link']}\\n"
-                f"- Cuplikan: {desc}\\n"
-                f"- Kategori otomatis: {item['category']}\\n"
-                f"- Status: **HASIL INDEKS — BELUM DIVERIFIKASI**\\n"
+                f"### {len(rows)+1}. {item['title']}\n"
+                f"- Media/sumber tertera: {item['source']}\n"
+                f"- Waktu publikasi (sesuai feed): {item['published'] or 'Tidak tersedia'}\n"
+                f"- Tautan hasil feed: {item['link']}\n"
+                f"- Cuplikan: {desc}\n"
+                f"- Kategori otomatis: {item['category']}\n"
+                f"- Status: **HASIL INDEKS — BELUM DIVERIFIKASI**\n"
             )
-        sections.append(f"## {label}\\n\\n" + ("\\n".join(rows) if rows else "_Tidak ada hasil baru setelah deduplikasi judul._") + "\\n")
+        sections.append(f"## {label}\n\n" + ("\n".join(rows) if rows else "_Tidak ada hasil baru setelah deduplikasi judul._") + "\n")
 
     items = list(by_title.values())
     content = (
-        f"# Persib News Monitor — {now:%d %B %Y, %H:%M WIB}\\n\\n"
-        f"- Dibuat otomatis: {now.isoformat(timespec='minutes')}\\n"
-        f"- Jumlah kandidat unik berdasarkan normalisasi judul: {len(items)}\\n"
-        "- Status keseluruhan: **BAHAN RISET, BUKAN FAKTA TERVERIFIKASI**\\n"
-        "- Google News RSS dipakai untuk penemuan artikel; buka artikel/pengumuman asli sebelum memakai klaim.\\n"
-        "- Label kategori dan skor prioritas bersifat heuristik berdasarkan judul/sumber feed.\\n"
-        "- Jangan mengubah rumor menjadi kepastian. Kondisi pemain, sanksi, dan ketersediaan perlu konfirmasi kuat.\\n"
-        "- Foto/video tidak otomatis boleh digunakan hanya karena muncul di artikel atau media sosial.\\n\\n"
+        f"# Persib News Monitor — {now:%d %B %Y, %H:%M WIB}\n\n"
+        f"- Dibuat otomatis: {now.isoformat(timespec='minutes')}\n"
+        f"- Jumlah kandidat unik berdasarkan normalisasi judul: {len(items)}\n"
+        "- Status keseluruhan: **BAHAN RISET, BUKAN FAKTA TERVERIFIKASI**\n"
+        "- Google News RSS dipakai untuk penemuan artikel; buka artikel/pengumuman asli sebelum memakai klaim.\n"
+        "- Label kategori dan skor prioritas bersifat heuristik berdasarkan judul/sumber feed.\n"
+        "- Jangan mengubah rumor menjadi kepastian. Kondisi pemain, sanksi, dan ketersediaan perlu konfirmasi kuat.\n"
+        "- Foto/video tidak otomatis boleh digunakan hanya karena muncul di artikel atau media sosial.\n\n"
         + render_board(items)
-        + "\\n".join(sections)
-        + "\\n## Catatan editor\\n"
-        "- Angle yang dipilih: _menunggu keputusan editor_\\n"
-        "- Koreksi/konteks tambahan: _menunggu editor_\\n"
-        "- Status editorial: **PENDING**\\n"
+        + "\n".join(sections)
+        + "\n## Catatan editor\n"
+        "- Angle yang dipilih: _menunggu keputusan editor_\n"
+        "- Koreksi/konteks tambahan: _menunggu editor_\n"
+        "- Status editorial: **PENDING**\n"
     )
     stamp = now.strftime("%Y-%m-%d-%H00")
     (OUT / f"{stamp}.md").write_text(content, encoding="utf-8")
