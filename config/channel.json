@@ -1,0 +1,16 @@
+{
+  "project_name": "Persib Content Factory",
+  "repository": "abizard42-art/Persib-content-Factory",
+  "club_scope": "Persib Bandung",
+  "language": "id-ID",
+  "formats": ["youtube_shorts", "youtube_long"],
+  "visual_style": {
+    "presenter": "chibi",
+    "footage_priority": "real_photos_and_authorized_footage",
+    "graphics": "tactical_diagrams_and_statistics"
+  },
+  "editorial_control": {
+    "human_approval_required": true,
+    "publish_without_manual_approval": false
+  }
+}
