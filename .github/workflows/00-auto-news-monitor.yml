@@ -1,0 +1,49 @@
+name: "00 - Automatic Persib News Monitor"
+
+on:
+  schedule:
+    # 08:00 and 18:00 WIB
+    - cron: "0 1,11 * * *"
+  workflow_dispatch:
+    inputs:
+      custom_query:
+        description: "Topik tambahan (opsional), misalnya kondisi Beckham Putra"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: persib-news-monitor
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Collect Persib news links
+        env:
+          CUSTOM_QUERY: ${{ inputs.custom_query }}
+        run: python scripts/collect_persib_news.py
+
+      - name: Save digest directly to repository
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/daily/
+          if git diff --cached --quiet; then
+            echo "No digest changes to save."
+            exit 0
+          fi
+          git commit -m "Update automatic Persib news digest"
+          git push
