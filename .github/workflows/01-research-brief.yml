@@ -1,0 +1,81 @@
+name: "01 - Create Research Brief"
+
+on:
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: "Topik, misalnya Prediksi Persib vs Bali United"
+        required: true
+        type: string
+      match_date:
+        description: "Tanggal pertandingan (YYYY-MM-DD), jika relevan"
+        required: false
+        type: string
+      editorial_question:
+        description: "Pertanyaan utama yang ingin dibahas"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  create-brief:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create research brief
+        env:
+          TOPIC: ${{ inputs.topic }}
+          MATCH_DATE: ${{ inputs.match_date }}
+          EDITORIAL_QUESTION: ${{ inputs.editorial_question }}
+        run: |
+          set -euo pipefail
+          mkdir -p research/inbox
+          SLUG="$(printf '%s' "$TOPIC" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-|-$//g' | cut -c1-60)"
+          FILE="research/inbox/$(date +%Y%m%d)-${SLUG:-topik}.md"
+          {
+            echo "# Research Brief: $TOPIC"
+            echo
+            echo "- Tanggal dibuat: $(date -u '+%Y-%m-%d %H:%M UTC')"
+            echo "- Tanggal pertandingan: ${MATCH_DATE:-Belum ditentukan}"
+            echo "- Status: NEEDS_RESEARCH"
+            echo "- Status editorial: PENDING"
+            echo
+            echo "## Pertanyaan editorial"
+            echo "${EDITORIAL_QUESTION:-Belum ditentukan}"
+            echo
+            echo "## Fakta terverifikasi"
+            echo "- [ ] Isi hanya setelah sumber diperiksa."
+            echo
+            echo "## Laporan media"
+            echo "- [ ] Cantumkan media, tautan, penulis (jika tersedia), dan tanggal publikasi."
+            echo
+            echo "## Rumor / informasi belum terkonfirmasi"
+            echo "- [ ] Jangan sajikan sebagai fakta."
+            echo
+            echo "## Analisis dan opsi angle"
+            echo "- [ ] Menunggu riset dan keputusan editor."
+            echo
+            echo "## Pertanyaan untuk editor"
+            echo "1. Angle mana yang ingin diangkat?"
+            echo "2. Apa koreksi atau informasi tambahan dari editor?"
+            echo "3. Klaim/prediksi mana yang disetujui?"
+            echo
+            echo "## Sumber"
+            echo "| Jenis | Sumber | Tanggal publikasi | URL | Catatan |"
+            echo "|---|---|---|---|---|"
+            echo
+            echo "## Keputusan editorial"
+            echo "- Status: PENDING"
+            echo "- Keputusan: Belum disetujui"
+          } > "$FILE"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$FILE"
+          git commit -m "Create research brief: $TOPIC"
+          git push
+          echo "Created: $FILE"
