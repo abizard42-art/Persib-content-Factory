@@ -35,7 +35,7 @@ class StripHTML(HTMLParser):
 def clean_html(value):
     parser = StripHTML()
     parser.feed(unescape(value or ""))
-    return re.sub(r"\\s+", " ", " ".join(parser.parts)).strip()
+    return re.sub(r"\s+", " ", " ".join(parser.parts)).strip()
 
 def fetch(query):
     params = urlencode({"q": query, "hl": "id", "gl": "ID", "ceid": "ID:id"})
