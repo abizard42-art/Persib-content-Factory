@@ -20,8 +20,10 @@ jobs:
         with:
           python-version: "3.12"
       - name: Build draft scaffold
+        env:
+          EDITORIAL_FILE: ${{ inputs.editorial_file }}
         run: |
-          python scripts/build_script_draft.py --input "\${{ inputs.editorial_file }}" --output-dir scripts/drafts
+          python scripts/build_script_draft.py --input "$EDITORIAL_FILE" --output-dir scripts/drafts
       - name: Commit generated draft
         run: |
           git config user.name "github-actions[bot]"
