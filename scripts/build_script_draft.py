@@ -24,7 +24,7 @@ def table_rows(block):
     return rows[1:] if rows else []
 
 def checked(text, phrase):
-    return bool(re.search(rf"^\\s*-\\s*\\[x\\]\\s*{re.escape(phrase)}", text, re.I | re.M))
+    return bool(re.search(rf"^\s*-\s*\[x\]\s*{re.escape(phrase)}", text, re.I | re.M))
 
 def main():
     parser = argparse.ArgumentParser()
