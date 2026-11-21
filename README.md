@@ -29,4 +29,4 @@ Workflow produksi konten Persib Bandung berbasis riset, keputusan editorial manu
 Buka tab **Actions**, pilih **01 - Create Research Brief**, lalu tekan **Run workflow**. Workflow ini hanya membuat kerangka brief; belum melakukan scraping atau menyimpulkan berita otomatis.
 
 ## Status
-Fondasi repository. Research collector, editorial approval gate, renderer, dan publisher akan dibangun bertahap.
+Fondasi repository. News monitor mengelompokkan kandidat berdasarkan kata kunci judul, menghapus duplikasi judul lintas feed, dan menampilkan papan kandidat editorial dengan skor heuristik 1–5. Skor bukan verifikasi atau penilaian kebenaran. Editor tetap memilih topik, angle, dan klaim secara manual. Renderer dan publisher akan dibangun bertahap.
