@@ -1,6 +1,6 @@
 # Persib Content Factory — Vertical Video Layout v1
 
-Status: **APPROVED — OFFICIAL BASE TEMPLATE FOR PERSIB CONTENT**
+Status: **APPROVED — OFFICIAL BASE TEMPLATE AND CHIBI CHARACTER DESIGN**
 
 ## 1. Canvas
 - Format: vertical 9:16 (1080 × 1920 reference canvas).
@@ -38,23 +38,24 @@ The panel changes with the subject being discussed. Use the most informative vis
 
 Do not force every episode into the same visual type. Keep text short enough to read on a phone.
 
-## 5. Chibi host
-- One consistent Bobotoh Casuals character, shown in the lower host zone.
-- Set the host zone to exactly 40% of the full canvas height. Transfer the remaining available space to the central visual panel (47.5%, with the header at 12.5%).
-- Character direction: Bandung casual / awayday terrace style; technical parka, cargo trousers, retro/outdoor sneakers, small sling bag, Persib-blue and white accents.
+## 5. Chibi host — approved character design
+- The editor has approved the generated master character sheet as the official visual design reference for the Persib Content Factory host.
+- Character name is **not yet assigned**. The generated sheet contains the text “Raka”; this is a placeholder/error and must not be used as the Persib host's name. Keep this character separate from Raka, the host of the Sejarah Dunia project.
+- Visual identity: youthful anime-chibi Bobotoh, tousled dark hair, expressive brown eyes, friendly energetic face.
+- Outfit: dark technical parka with Persib-blue accents, dark shirt, olive cargo trousers, retro/outdoor sneakers, and a small crossbody sling bag.
 - Permanent sleeve identity: original circular **FLOWER CITY CASUALS** concept patch. This is a channel character design, not an official club or community emblem.
-- Use one master character sheet containing multiple expressions/poses. Keep face, hair, clothing, colors, and patch consistent between expressions.
+- Palette: dark navy/black, Persib blue, white, olive, warm skin tones, with restrained yellow accents.
+- Keep face, hair, proportions, outfit, patch, and colors consistent across all future poses and expressions.
 - Required expression set: NORMAL, HAPPY, ANALYSIS, FIRED-UP, SHOCKED, DISAPPOINTED.
-- The master sheet is not approved yet; do not treat the current prototype SVG/PNGs as final. Replace/rebuild expression assets after the character master is approved.
+- The approved master sheet is a design/reference sheet, not yet six individually cropped production-ready transparent assets. Prepare consistent expression/pose assets from this reference before animation implementation.
 
 ## 6. Motion and pacing
 - First render uses a static temporary host placeholder so the layout can be approved before character animation work.
-- Chibi animation concept is approved for a later pass: subtle idle/breathing, blinking, mouth movement synced to narration, hand gestures, and context-based expressions. Do not implement this before the first layout/video review.
+- Chibi animation concept is approved for a later pass: subtle idle/breathing, blinking, mouth movement synced to narration, hand gestures, and context-based expressions.
 - Keep the host's base position stable; use expression/gesture changes sparingly to emphasize key beats.
 - Change the main visual panel when the narration moves to a new fact, player, tactical point, or statistic.
 - Prefer subtle transitions and clear visual hierarchy over constant movement.
 - Avoid covering faces, player names, key statistics, or tactical markings with subtitles.
-
 
 ## 6.1 Starting XI reveal animation
 For the STARTING XI category, reveal the formation player by player rather than showing the full lineup immediately.
@@ -75,7 +76,6 @@ For the STARTING XI category, reveal the formation player by player rather than 
 - If a licensed player photo is unavailable, use a neutral initials/number tile rather than inventing a likeness.
 - The formation should remain readable on a phone. Avoid overlapping cards; use compact labels near the pitch or a paired pitch-and-lineup layout if the full names do not fit.
 - The reveal order is a presentation choice, not evidence of the official lineup. Label the graphic **PREDIKSI STARTING XI** until the official team sheet is released.
-
 
 ### Layout composition for the lineup reveal
 - Keep the pitch in portrait orientation: the opponent goal is at the top and our goalkeeper is at the bottom.
@@ -101,13 +101,15 @@ For the STARTING XI category, reveal the formation player by player rather than 
 
 ## 8. First preview acceptance checklist
 - [x] Overall placement and screen-zone proportions approved by the editor.
+- [x] Chibi character visual design approved by the editor as the official design reference.
 - [ ] Readable on a typical Android phone without zooming.
 - [ ] Header/category is clear but does not dominate.
 - [ ] Main panel can show photos, statistics, and tactical diagrams without changing the overall layout.
 - [ ] Chibi host remains visually prominent in the lower zone.
-- [ ] Persib identity is unmistakable through the character's styling and blue/white accents, without relying only on a logo.
-- [ ] All six expressions look like the same character.
+- [x] Persib identity is clear through the character's Bandung Casuals styling and blue/white accents.
+- [x] Six expressions are defined in the approved reference sheet.
+- [ ] Production-ready individual expression assets are prepared and checked for consistency.
 - [ ] No unlicensed footage or imagery is included.
 
 ## 9. Next implementation step
-Build a single 9:16 sample scene with placeholder visuals and a temporary host silhouette. Replace the placeholder with the approved Bobotoh Casuals master sheet once image generation is available and the editor approves the design.
+Prepare a clean production asset pack from the approved master character reference: full-body host cutout plus six consistent expression/pose assets, with transparent backgrounds where practical. Do not use the placeholder text “Raka” as the Persib host's name. Then integrate the static host into the approved 9:16 layout and proceed to idle/blink/mouth/gesture animation only after checking the first integrated preview.
