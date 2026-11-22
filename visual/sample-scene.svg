@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920" role="img" aria-labelledby="title desc">
+  <title id="title">Persib Content Factory — sample vertical scene</title>
+  <desc id="desc">A 9:16 editorial video layout mockup with a channel header, category tab, placeholder match visual panel, and Bobotoh Casuals host placeholder.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101a2a"/>
+      <stop offset="1" stop-color="#05080e"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0878d1"/>
+      <stop offset="1" stop-color="#064a91"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity=".035" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1080" height="1920" fill="url(#bg)"/>
+  <rect width="1080" height="1920" fill="url(#grid)"/>
+
+  <!-- Header / channel identity -->
+  <rect x="0" y="0" width="1080" height="240" fill="#080d16"/>
+  <rect x="0" y="232" width="1080" height="8" fill="url(#blue)"/>
+  <text x="72" y="88" fill="#ffffff" font-family="Arial, sans-serif" font-size="42" font-weight="800" letter-spacing="3">PERSIB CONTENT</text>
+  <text x="72" y="142" fill="#ffffff" font-family="Arial, sans-serif" font-size="42" font-weight="800" letter-spacing="3">FACTORY</text>
+  <text x="74" y="190" fill="#8ea4bd" font-family="Arial, sans-serif" font-size="22" letter-spacing="4">BOBOTOh EDITORIAL DESK</text>
+  <rect x="770" y="66" width="238" height="88" rx="18" fill="#102b49" stroke="#238be0" stroke-width="2"/>
+  <text x="889" y="122" fill="#ffffff" font-family="Arial, sans-serif" font-size="30" font-weight="700" text-anchor="middle">MATCH PREVIEW</text>
+
+  <!-- Main visual panel -->
+  <rect x="54" y="286" width="972" height="660" rx="30" fill="#0b1421" stroke="#28415d" stroke-width="3"/>
+  <text x="92" y="350" fill="#66baff" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="4">EDITORIAL VISUAL PANEL</text>
+  <text x="92" y="422" fill="#ffffff" font-family="Arial, sans-serif" font-size="54" font-weight="800">PERSIB VS OPPONENT</text>
+  <text x="92" y="470" fill="#9db0c5" font-family="Arial, sans-serif" font-size="26">Fixture, venue, and verified match context</text>
+
+  <!-- Placeholder pitch diagram -->
+  <rect x="92" y="520" width="896" height="330" rx="18" fill="#0d352f" stroke="#4c8b79" stroke-width="2"/>
+  <path d="M540 520V850 M92 685H988 M420 520V850 M660 520V850" stroke="#c9eee0" stroke-opacity=".45" stroke-width="3" fill="none"/>
+  <circle cx="540" cy="685" r="76" fill="none" stroke="#c9eee0" stroke-opacity=".45" stroke-width="3"/>
+  <rect x="92" y="604" width="112" height="162" fill="none" stroke="#c9eee0" stroke-opacity=".45" stroke-width="3"/>
+  <rect x="876" y="604" width="112" height="162" fill="none" stroke="#c9eee0" stroke-opacity=".45" stroke-width="3"/>
+  <g fill="#ffffff" stroke="#0878d1" stroke-width="5">
+    <circle cx="270" cy="610" r="20"/><circle cx="420" cy="580" r="20"/><circle cx="420" cy="685" r="20"/><circle cx="420" cy="790" r="20"/>
+    <circle cx="580" cy="610" r="20"/><circle cx="580" cy="685" r="20"/><circle cx="580" cy="760" r="20"/>
+    <circle cx="760" cy="610" r="20"/><circle cx="760" cy="685" r="20"/><circle cx="760" cy="760" r="20"/>
+    <circle cx="900" cy="685" r="20"/>
+  </g>
+  <text x="540" y="900" fill="#8ea4bd" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">PLACEHOLDER — replace with verified line-up / tactical graphic / match photo</text>
+
+  <!-- Chibi host zone -->
+  <rect x="54" y="986" width="972" height="872" rx="30" fill="#0a111c" stroke="#28415d" stroke-width="3"/>
+  <text x="92" y="1050" fill="#66baff" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="4">BOBOTOh CASUALS HOST</text>
+  <text x="92" y="1100" fill="#ffffff" font-family="Arial, sans-serif" font-size="32" font-weight="700">HOST PLACEHOLDER — MASTER CHARACTER PENDING</text>
+
+  <!-- Simple neutral character silhouette placeholder -->
+  <ellipse cx="540" cy="1750" rx="230" ry="34" fill="#000000" opacity=".45"/>
+  <path d="M395 1410 Q365 1290 445 1225 Q540 1160 635 1225 Q715 1290 685 1410 L650 1510 L430 1510Z" fill="#15263a" stroke="#47708f" stroke-width="5"/>
+  <path d="M430 1490 L370 1740 L480 1760 L540 1550 L600 1760 L710 1740 L650 1490Z" fill="#172333" stroke="#47708f" stroke-width="5"/>
+  <path d="M445 1245 Q540 1150 635 1245 L670 1380 Q650 1455 540 1465 Q430 1455 410 1380Z" fill="#c98f68" stroke="#8c5b43" stroke-width="5"/>
+  <path d="M410 1325 Q405 1195 540 1180 Q675 1195 670 1325 Q625 1270 580 1280 Q510 1245 450 1310Z" fill="#17191e"/>
+  <path d="M470 1360 Q490 1345 510 1360 M570 1360 Q590 1345 610 1360" stroke="#241a18" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <path d="M500 1410 Q540 1430 580 1410" stroke="#7b3e37" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <path d="M430 1490 L540 1560 L650 1490" fill="#0a2745" stroke="#238be0" stroke-width="5"/>
+  <rect x="420" y="1510" width="240" height="170" rx="26" fill="#10243a" stroke="#47708f" stroke-width="4"/>
+  <rect x="640" y="1550" width="76" height="76" rx="38" fill="#0b3157" stroke="#66baff" stroke-width="4"/>
+  <text x="678" y="1597" fill="#ffffff" font-family="Arial, sans-serif" font-size="17" font-weight="700" text-anchor="middle">FCC</text>
+  <path d="M420 1560 L330 1690 L385 1720 L475 1610 M660 1560 L750 1690 L695 1720 L605 1610" fill="none" stroke="#15263a" stroke-width="46" stroke-linecap="round"/>
+  <path d="M330 1690 L290 1720 M750 1690 L790 1720" stroke="#c98f68" stroke-width="36" stroke-linecap="round"/>
+  <text x="540" y="1810" fill="#8ea4bd" font-family="Arial, sans-serif" font-size="22" text-anchor="middle">TEMPORARY SILHOUETTE — NOT THE FINAL CHIBI DESIGN</text>
+
+  <!-- Footer cue -->
+  <rect x="54" y="1876" width="972" height="2" fill="#28415d"/>
+  <text x="72" y="1908" fill="#71869d" font-family="Arial, sans-serif" font-size="18" letter-spacing="2">PERSIB CONTENT FACTORY • SAMPLE SCENE • NOT FOR PUBLISHING</text>
+</svg>
