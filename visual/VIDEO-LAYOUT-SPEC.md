@@ -12,8 +12,8 @@ Status: **DRAFT — layout direction agreed; visual implementation pending edito
 | Zone | Height | Purpose |
 |---|---:|---|
 | Header + category tab | 12.5% | Persistent channel identity and changing content category |
-| Main visual panel | 41.25% | Photos, match moments, stats, tables, maps, or tactical diagrams; expanded for clearer analysis |
-| Chibi host / narration | 46.25% | Consistent Bobotoh Casuals host; slightly smaller so the main visual has more room |
+| Main visual panel | 47.5% | Photos, match moments, stats, tables, maps, or tactical diagrams; priority space for analysis and formation graphics |
+| Chibi host / narration | 40% | Consistent Bobotoh Casuals host; fixed at 40% of the canvas height |
 
 Percentages are initial layout proportions, not locked pixel measurements. Revisit after the first phone preview.
 
@@ -40,7 +40,7 @@ Do not force every episode into the same visual type. Keep text short enough to 
 
 ## 5. Chibi host
 - One consistent Bobotoh Casuals character, shown in the lower host zone.
-- Reduce the host zone by approximately 6.25 percentage points (from 52.5% to 46.25%) and transfer that space to the central visual panel.
+- Set the host zone to exactly 40% of the full canvas height. Transfer the remaining available space to the central visual panel (47.5%, with the header at 12.5%).
 - Character direction: Bandung casual / awayday terrace style; technical parka, cargo trousers, retro/outdoor sneakers, small sling bag, Persib-blue and white accents.
 - Permanent sleeve identity: original circular **FLOWER CITY CASUALS** concept patch. This is a channel character design, not an official club or community emblem.
 - Use one master character sheet containing multiple expressions/poses. Keep face, hair, clothing, colors, and patch consistent between expressions.
