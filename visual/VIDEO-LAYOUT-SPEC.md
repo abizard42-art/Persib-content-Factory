@@ -1,6 +1,6 @@
 # Persib Content Factory — Vertical Video Layout v1
 
-Status: **DRAFT — layout direction agreed; visual implementation pending editor review**
+Status: **LAYOUT LOCKED FOR FIRST VIDEO TEST — final visual review pending**
 
 ## 1. Canvas
 - Format: vertical 9:16 (1080 × 1920 reference canvas).
@@ -15,7 +15,7 @@ Status: **DRAFT — layout direction agreed; visual implementation pending edito
 | Main visual panel | 47.5% | Photos, match moments, stats, tables, maps, or tactical diagrams; priority space for analysis and formation graphics |
 | Chibi host / narration | 40% | Consistent Bobotoh Casuals host; fixed at 40% of the canvas height |
 
-Percentages are initial layout proportions, not locked pixel measurements. Revisit after the first phone preview.
+Proportions are locked for the first video test: 12.5% header, 47.5% main visual panel, and 40% chibi host.
 
 ## 3. Header and category tabs
 Keep the channel name fixed. Change the category label to match the episode:
@@ -48,6 +48,8 @@ Do not force every episode into the same visual type. Keep text short enough to 
 - The master sheet is not approved yet; do not treat the current prototype SVG/PNGs as final. Replace/rebuild expression assets after the character master is approved.
 
 ## 6. Motion and pacing
+- First render uses a static temporary host placeholder so the layout can be approved before character animation work.
+- Chibi animation concept is approved for a later pass: subtle idle/breathing, blinking, mouth movement synced to narration, hand gestures, and context-based expressions. Do not implement this before the first layout/video review.
 - Keep the host's base position stable; use expression/gesture changes sparingly to emphasize key beats.
 - Change the main visual panel when the narration moves to a new fact, player, tactical point, or statistic.
 - Prefer subtle transitions and clear visual hierarchy over constant movement.
