@@ -40,3 +40,14 @@ Buka tab Actions, pilih 00 - Auto News Monitor untuk menjalankan pengumpulan ber
 
 ## Status
 Fondasi repository. News monitor mengelompokkan kandidat berdasarkan kata kunci judul, menghapus duplikasi judul lintas feed, menampilkan papan kandidat editorial dengan skor heuristik 1–5, dan membuat file inbox editorial otomatis. Skor bukan verifikasi atau penilaian kebenaran. Editor tetap memilih topik, angle, dan klaim secara manual. Script Builder v1 menyusun kerangka dan tabel klaim/sumber; ia tidak menambah fakta, memverifikasi sumber, atau mengizinkan publikasi otomatis. Workflow pembuat audio narasi sudah ditambahkan tetapi belum diuji melalui GitHub Actions. Master chibi tersedia di `assets/chibi/master-sheet.svg`. Workflow `Prepare Chibi Expression Assets` memisahkan enam pose menjadi aset SVG dan PNG transparan di `assets/chibi/expressions/`; workflow ini sudah disiapkan tetapi belum dijalankan untuk verifikasi. Renderer video chibi dan publisher masih tahap berikutnya.
+
+## Render animasi Starting XI
+Prototype renderer FFmpeg tersedia di `scripts/render_starting_xi.py`. Data contoh ada di `visual/demo-lineup.json`. Renderer membuat video MP4 vertikal 1080×1920 dengan reveal kartu pemain satu per satu, nomor/nama/posisi, dan penanda posisi di lapangan. Foto pemain dapat ditambahkan melalui properti `photo` pada tiap pemain jika file foto berizin tersedia di repository/runner.
+
+Untuk mencoba:
+1. Buka tab **Actions**.
+2. Pilih **Render Starting XI Reveal**.
+3. Jalankan workflow dengan input `visual/demo-lineup.json`.
+4. Setelah selesai, unduh artifact `persib-starting-xi-reveal`.
+
+Data contoh hanya placeholder, bukan susunan pemain Persib. Ganti dengan 11 pemain yang sudah diverifikasi sebelum dipakai. Foto pemain harus punya izin/lisensi yang sesuai. Workflow dan renderer baru ditambahkan; belum dianggap teruji sampai ada run Actions yang berhasil dan hasil MP4 diperiksa.
