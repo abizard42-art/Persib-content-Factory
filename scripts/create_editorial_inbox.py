@@ -15,14 +15,14 @@ def slugify(value):
     return value[:72].strip("-") or "kandidat-persib"
 
 def extract_field(block, label):
-    match = re.search(rf"^-\\s*{re.escape(label)}\\s*:\\s*(.*)$", block, re.M | re.I)
+    match = re.search(rf"^-\s*{re.escape(label)}\s*:\s*(.*)$", block, re.M | re.I)
     return match.group(1).strip() if match else ""
 
 def main():
     if not DIGEST.exists():
         raise SystemExit(f"Digest tidak ditemukan: {DIGEST}")
     raw = DIGEST.read_text(encoding="utf-8")
-    sections = re.split(r"(?m)^##\\s+", raw)
+    sections = re.split(r"(?m)^##\s+", raw)
     created = 0
     skipped = 0
     for section in sections[1:]:
@@ -30,12 +30,12 @@ def main():
         section_name = lines[0].strip()
         if section_name.lower().startswith("catatan editor"):
             continue
-        blocks = re.split(r"(?m)(?=^###\\s+\\d+\\.\\s+)", section)
+        blocks = re.split(r"(?m)(?=^###\s+\d+\.\s+)", section)
         count = 0
         for block in blocks[1:]:
             if created >= MAX_TOTAL or count >= MAX_PER_SECTION:
                 break
-            heading = re.search(r"(?m)^###\\s+\\d+\\.\\s+(.+)$", block)
+            heading = re.search(r"(?m)^###\s+\d+\.\s+(.+)$", block)
             if not heading:
                 continue
             title = heading.group(1).strip()
