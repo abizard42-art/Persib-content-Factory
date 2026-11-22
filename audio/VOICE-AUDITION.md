@@ -13,7 +13,7 @@ Target: suara narasi Bahasa Indonesia tanpa API berbayar, tanpa billing cloud, d
 - Tidak memerlukan API key TTS berbayar atau akun billing.
 - Workflow memakai GitHub Actions runner dan menyimpan hasil sebagai artifact selama 7 hari.
 
-## Cara menjalankan audisi
+## Cara menjalankan audisi (workflow 03)
 
 1. Buka tab **Actions** di repository Persib Content Factory.
 2. Pilih **03 - Generate Persib Voice Audition**.
@@ -22,7 +22,7 @@ Target: suara narasi Bahasa Indonesia tanpa API berbayar, tanpa billing cloud, d
 5. Setelah workflow selesai, buka hasil run dan unduh artifact **persib-voice-audition**.
 6. Dengarkan file WAV di dalam ZIP.
 
-Workflow memakai Laras TTS v0.2.1 yang dipin ke tag rilis, mengunduh model publik, memverifikasi SHA-256 setiap berkas, lalu membuat WAV. Workflow ini belum dianggap lulus sampai run pertama berhasil dan audionya didengarkan.
+Workflow memakai Laras TTS v0.2.1 yang dipin ke tag rilis, mengunduh model publik, memverifikasi SHA-256 setiap berkas, lalu membuat WAV. Audisi awal telah didengarkan dan disetujui editor sebagai baseline suara. Workflow produksi narasi terpisah tersedia di `.github/workflows/04-generate-narration.yml`; workflow produksi itu belum dianggap teruji sampai dijalankan dan hasil WAV diperiksa.
 
 ## Naskah uji default
 
@@ -46,9 +46,9 @@ Beri skor 1–5 setelah audio berhasil dibuat:
 - [ ] Tidak terdengar berlebihan atau seperti berteriak terus
 - [ ] Nyaman didengar untuk video 4–8 menit
 
-**Pilihan editor:** PENDING
+**Pilihan editor:** APPROVED — baseline suara Laras TTS disetujui setelah didengarkan oleh editor.
 
-**Catatan editor:** belum diisi.
+**Catatan editor:** gunakan karakter suara hasil audisi sebagai baseline. Evaluasi ulang hanya jika ada masalah pengucapan atau editor meminta perubahan.
 
 ## Lisensi dan biaya
 
@@ -57,3 +57,16 @@ Beri skor 1–5 setelah audio berhasil dibuat:
 3. Tidak memakai layanan TTS cloud berbayar atau billing cloud.
 4. GitHub Actions pada repo publik digunakan untuk proses audisi; artifact hasil audisi disimpan 7 hari lalu kedaluwarsa.
 5. Jangan aktifkan layanan berbayar atau mengubah workflow ke provider berbayar tanpa persetujuan eksplisit editor.
+
+
+## Produksi narasi untuk video
+
+Gunakan workflow **04 - Generate Persib Narration Audio** untuk naskah final:
+1. Buka repository → Actions → 04 - Generate Persib Narration Audio.
+2. Pilih **Run workflow** pada branch `main`.
+3. Tempel naskah final ke kolom `narration_text` (maksimal 10.000 karakter).
+4. Setelah berhasil, unduh artifact `persib-narration-audio`.
+5. Paket berisi `persib-narration.wav`, `narration.txt`, `metadata.json`, `credits.txt`, dan header respons TTS.
+6. Dengarkan audio, cek nama pemain/istilah, jeda, volume, dan potongan kalimat sebelum dipakai dalam video.
+
+Audio yang dihasilkan belum otomatis menjadi video dan bukan izin publikasi. Workflow ini belum diuji end-to-end di GitHub Actions. Artifact disimpan 7 hari; unduh dan simpan salinan sendiri.
