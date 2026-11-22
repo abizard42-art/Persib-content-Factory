@@ -10,9 +10,10 @@ Workflow produksi konten Persib Bandung berbasis riset, keputusan editorial manu
 - Workflow proyek ini terpisah dari AI Content Factory, Peta Sunyi, dan Sejarah Dunia.
 
 ## Alur produksi
-1. **Research** — buat brief pertandingan/topik dari sumber yang dicatat.
-2. **Editorial** — pemilik channel mengoreksi dan menyetujui angle, prediksi, dan klaim.
-3. **Content** — jalankan `02 - Build Script Draft` hanya untuk file editorial berstatus `APPROVED FOR SCRIPT`; sistem menyusun kerangka draf dari bahan editor.
+1. **Research** — News Monitor mengumpulkan tautan dan membuat digest otomatis.
+2. **Editorial inbox** — setiap jadwal monitor, sistem membuat file kandidat `PENDING` di `editorial/inbox/` (maksimal 5 kandidat per kategori dan 25 total per run; kandidat yang sudah ada dilewati).
+3. **Editorial** — pemilik channel membuka sumber asli, mengoreksi klaim, lalu menentukan LANJUT/TUNDA/TOLAK dan persetujuan.
+4. **Content** — `02 - Build Script Draft` hanya berjalan untuk file editorial berstatus `APPROVED FOR SCRIPT`; sistem menyusun kerangka draf dari bahan editor.
 4. **Visual & Render** — komposisi foto berizin, grafis taktik, dan presenter chibi.
 5. **Quality Control** — cek fakta, visual, audio, hak penggunaan aset, dan durasi.
 6. **Publish** — upload/penjadwalan hanya setelah persetujuan manual.
@@ -20,7 +21,8 @@ Workflow produksi konten Persib Bandung berbasis riset, keputusan editorial manu
 ## Struktur awal
 - `config/`: konfigurasi channel, sumber, dan produksi.
 - `research/inbox/`: brief riset yang baru dibuat.
-- `editorial/pending/`: bahan yang menunggu keputusan.
+- `editorial/inbox/`: kandidat berita yang dibuat otomatis dan masih berstatus `PENDING`.
+- `editorial/pending/`: bahan yang sedang diperiksa editor.
 - `editorial/approved/`: keputusan editorial yang disetujui.
 - `scripts/drafts/`: kerangka draf yang dihasilkan dari keputusan editorial.
 - `assets/`: aset dengan catatan sumber dan izin.
@@ -30,4 +32,4 @@ Workflow produksi konten Persib Bandung berbasis riset, keputusan editorial manu
 Buka tab **Actions**, pilih **01 - Create Research Brief**, lalu tekan **Run workflow**. Workflow ini hanya membuat kerangka brief; belum melakukan scraping atau menyimpulkan berita otomatis.
 
 ## Status
-Fondasi repository. News monitor mengelompokkan kandidat berdasarkan kata kunci judul, menghapus duplikasi judul lintas feed, dan menampilkan papan kandidat editorial dengan skor heuristik 1–5. Skor bukan verifikasi atau penilaian kebenaran. Editor tetap memilih topik, angle, dan klaim secara manual. Script Builder v1 menyusun kerangka dan tabel klaim/sumber; ia tidak menambah fakta, memverifikasi sumber, atau mengizinkan publikasi otomatis. Renderer dan publisher akan dibangun bertahap.
+Fondasi repository. News monitor mengelompokkan kandidat berdasarkan kata kunci judul, menghapus duplikasi judul lintas feed, menampilkan papan kandidat editorial dengan skor heuristik 1–5, dan membuat file inbox editorial otomatis. Skor bukan verifikasi atau penilaian kebenaran. Editor tetap memilih topik, angle, dan klaim secara manual. Script Builder v1 menyusun kerangka dan tabel klaim/sumber; ia tidak menambah fakta, memverifikasi sumber, atau mengizinkan publikasi otomatis. Renderer dan publisher akan dibangun bertahap.
