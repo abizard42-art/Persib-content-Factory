@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="980" viewBox="1175 140 320 490" version="1.1"><defs>
+    <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#f5f4ef" /><stop offset="1" stop-color="#e9e8e1" /></linearGradient>
+    <linearGradient id="parka" x2="1" y2="1"><stop stop-color="#202b36" /><stop offset="1" stop-color="#101820" /></linearGradient>
+    <linearGradient id="pants" x2="1"><stop stop-color="#303a43" /><stop offset="1" stop-color="#19232b" /></linearGradient>
+    <style>
+      .label{font:700 23px Arial,sans-serif;letter-spacing:2px;fill:#24313a}
+      .small{font:14px Arial,sans-serif;fill:#66717a}
+      .line{stroke:#101820;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
+      .skin{fill:#c98762;stroke:#402b25;stroke-width:6}
+      .hair{fill:#17191c;stroke:#101216;stroke-width:5;stroke-linejoin:round}
+      .coat{fill:url(#parka);stroke:#0b1218;stroke-width:7;stroke-linejoin:round}
+      .blue{fill:#1764a5}
+      .white{fill:#f2f4f6}
+    </style>
+    <g id="head">
+      <path class="hair" d="M-66,-43 Q-76,-99 -26,-111 Q-5,-135 23,-112 Q68,-120 75,-71 Q91,-37 62,-17 L-63,-17Z" />
+      <ellipse class="skin" cx="0" cy="-40" rx="62" ry="67" />
+      <path class="hair" d="M-63,-69 Q-38,-124 -4,-105 Q12,-128 31,-103 Q58,-106 68,-77 Q37,-88 21,-71 Q-2,-89 -22,-67 Q-43,-80 -63,-52Z" />
+      <ellipse cx="-24" cy="-43" rx="9" ry="13" fill="#fff" /><ellipse cx="24" cy="-43" rx="9" ry="13" fill="#fff" />
+      <ellipse cx="-22" cy="-41" rx="5" ry="8" fill="#4b342b" /><ellipse cx="26" cy="-41" rx="5" ry="8" fill="#4b342b" />
+      <circle cx="-20" cy="-44" r="2.5" fill="#fff" /><circle cx="28" cy="-44" r="2.5" fill="#fff" />
+      <path d="M-37,-62 Q-23,-70 -10,-63 M12,-63 Q28,-71 40,-61" fill="none" stroke="#17191c" stroke-width="6" stroke-linecap="round" />
+      <path d="M-12,-12 Q0,-5 13,-12" fill="none" stroke="#7e4138" stroke-width="4" stroke-linecap="round" />
+      <path d="M-4,-28 Q0,-24 4,-28" fill="none" stroke="#965e48" stroke-width="3" />
+    </g>
+    <g id="patch">
+      <circle r="22" fill="#111a22" stroke="#d8e0e5" stroke-width="3" />
+      <circle r="16" fill="none" stroke="#d8e0e5" stroke-width="1.5" />
+      <path d="M0,-10 L9,0 L0,10 L-9,0Z" fill="#1764a5" stroke="#f5f7f8" stroke-width="1.4" />
+      <path d="M0,-6 Q-5,-2 0,3 Q5,-2 0,-6Z" fill="#f5f7f8" />
+    </g>
+    <g id="body">
+      
+      <path d="M-37,139 L-34,245 L-8,250 L5,150Z" fill="url(#pants)" stroke="#101820" stroke-width="7" />
+      <path d="M9,150 L8,246 L39,249 L47,139Z" fill="url(#pants)" stroke="#101820" stroke-width="7" />
+      <path d="M-39,239 L-42,267 L8,267 L9,249Z M8,245 L8,267 L57,267 L48,242Z" fill="#19232b" stroke="#101820" stroke-width="6" />
+      
+      <path d="M-42,262 Q-62,270 -65,289 Q-40,300 5,291 L8,267Z" fill="#293a46" stroke="#111820" stroke-width="6" />
+      <path d="M8,266 L8,290 Q36,301 68,288 Q67,269 48,261Z" fill="#293a46" stroke="#111820" stroke-width="6" />
+      <path d="M-57,286 L4,286 M16,286 L62,286" stroke="#d9e1e5" stroke-width="4" />
+      
+      <path class="coat" d="M-49,-5 Q-75,5 -80,54 L-66,151 Q-28,177 0,165 Q34,178 67,151 L79,54 Q70,7 45,-5 L24,-20 L-23,-20Z" />
+      <path d="M-24,-18 L0,23 L24,-18 L13,79 L-13,79Z" fill="#263847" stroke="#0c141a" stroke-width="5" />
+      <path d="M0,23 L0,147" stroke="#8fa1ad" stroke-width="3" />
+      <path d="M-65,67 L-42,73 L-38,111 L-69,107Z M65,67 L42,73 L38,111 L69,107Z" fill="#263744" stroke="#0c141a" stroke-width="4" />
+      <path d="M-51,117 L-22,117 L-22,140 L-51,140Z M22,117 L51,117 L51,140 L22,140Z" fill="#111a22" stroke="#667985" stroke-width="3" />
+      <path d="M-62,28 L-77,82 L-66,124" fill="none" stroke="#536675" stroke-width="5" />
+      <use href="#patch" x="-58" y="40" />
+      
+      <path d="M40,4 Q22,48 -32,117" fill="none" stroke="#697987" stroke-width="7" />
+      <rect x="-47" y="103" width="34" height="31" rx="7" fill="#18232d" stroke="#8796a0" stroke-width="3" />
+      
+      <circle cx="-72" cy="124" r="13" class="skin" /><circle cx="72" cy="124" r="13" class="skin" />
+      
+      <path d="M-30,190 L-5,190 L-5,216 L-30,216Z M18,190 L42,190 L42,216 L18,216Z" fill="#46525a" stroke="#111820" stroke-width="3" />
+    </g>
+  </defs>
+  <g transform="translate(1335 315)">
+    <use href="#body" />
+    <use href="#head" transform="translate(0 -28)" />
+    <path d="M-72,122 Q-104,86 -87,57" fill="none" class="line" /><circle cx="-83" cy="52" r="13" class="skin" />
+    <path d="M72,122 Q111,93 121,55" fill="none" class="line" /><circle cx="124" cy="49" r="12" class="skin" />
+    <path d="M-38,-63 L-9,-55 M10,-55 L39,-63" stroke="#17191c" stroke-width="7" stroke-linecap="round" />
+    </g>
+  </svg>
