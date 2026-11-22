@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Persib Content Factory — Starting XI Reveal Prototype</title>
+<style>
+:root{color-scheme:dark;--blue:#087bd2;--blue2:#0b4e89;--white:#f4f8fc;--muted:#9fb0c2;--panel:#0b1421}
+*{box-sizing:border-box}body{margin:0;background:#050a12;color:var(--white);font-family:Arial,Helvetica,sans-serif}
+.stage{width:min(100vw,540px);aspect-ratio:9/16;margin:0 auto;background:linear-gradient(145deg,#101d30,#050910);padding:3.5%;display:flex;flex-direction:column;gap:1.2%;overflow:hidden}
+header{height:11%;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--blue);padding:0 2%}
+.brand{font-size:clamp(12px,3.5vw,20px);font-weight:900;letter-spacing:.11em}.sub{font-size:clamp(7px,1.7vw,10px);color:var(--muted);letter-spacing:.2em;margin-top:5px}
+.tag{background:#10365b;border:1px solid #258ee2;padding:9px 12px;border-radius:9px;font-size:clamp(8px,2vw,12px);font-weight:800}
+.visual{height:43%;background:#091522;border:1px solid #28435f;border-radius:15px;padding:3%;display:flex;flex-direction:column;min-height:0}
+.kicker{font-size:clamp(8px,1.8vw,11px);color:#70bfff;letter-spacing:.2em;font-weight:800}
+h1{font-size:clamp(17px,4.2vw,25px);margin:7px 0 12px}
+.layout{display:grid;grid-template-columns:44% 56%;gap:2%;flex:1;min-height:0}
+.pitch{position:relative;border:1px solid #77a996;border-radius:8px;background:repeating-linear-gradient(0deg,#10463a 0 36px,#0e3c33 36px 72px);overflow:hidden}
+.pitch:before{content:"";position:absolute;inset:0 0 0 50%;border-left:1px solid #b6e4d0aa}
+.pitch:after{content:"";position:absolute;width:28%;aspect-ratio:1;border:1px solid #b6e4d0aa;border-radius:50%;left:36%;top:39%}
+.boxline{position:absolute;left:0;top:31%;height:38%;width:18%;border:1px solid #b6e4d0aa}
+.marker{position:absolute;transform:translate(-50%,-50%);width:clamp(12px,3vw,17px);height:clamp(12px,3vw,17px);border:2px solid white;border-radius:50%;background:#183e62;box-shadow:0 0 0 2px #07111c;opacity:.18;transition:opacity .35s,transform .35s,box-shadow .35s}
+.marker.active{opacity:1;transform:translate(-50%,-50%) scale(1.28);background:#fff;box-shadow:0 0 0 3px var(--blue),0 0 15px #4bb5ff}
+.cards{display:flex;flex-direction:column;gap:3px;min-height:0;justify-content:space-between}
+.card{height:8.6%;min-height:0;perspective:700px;opacity:.22;transition:opacity .25s}
+.card.revealed{opacity:1}
+.flip{height:100%;position:relative;transform-style:preserve-3d;transition:transform .48s cubic-bezier(.2,.75,.25,1)}
+.card.revealed .flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:6px;display:flex;align-items:center;gap:7px;padding:3px 6px;border:1px solid #31506d;background:#12263b;overflow:hidden}
+.back{justify-content:center;color:#83a0ba;font-weight:800;letter-spacing:.12em;font-size:clamp(7px,1.5vw,9px)}
+.front{transform:rotateY(180deg);background:linear-gradient(90deg,#103c66,#102338);border-color:#248fe2}
+.avatar{width:clamp(22px,5.8vw,32px);height:clamp(22px,5.8vw,32px);border-radius:50%;background:linear-gradient(135deg,#dceeff,#6e9fc7);color:#12314e;display:grid;place-items:center;font-weight:900;font-size:clamp(7px,1.8vw,11px);flex:none}
+.num{font-size:clamp(10px,2.7vw,16px);font-weight:900;color:#fff;min-width:20px}
+.name{font-size:clamp(7px,1.8vw,11px);font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pos{font-size:clamp(6px,1.4vw,8px);color:#a9c6df;margin-top:2px}
+.host{flex:1;min-height:0;border:1px solid #28435f;border-radius:15px;background:radial-gradient(ellipse at 50% 30%,#162d46,#09111c 68%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative}
+.host .kicker{position:absolute;top:4%;left:5%}
+.silhouette{width:38%;height:65%;position:relative;margin-top:4%}
+.head{position:absolute;top:2%;left:28%;width:44%;height:36%;border-radius:45% 45% 42% 42%;background:#c98f68;border:3px solid #80543e}
+.hair{position:absolute;top:0;left:27%;width:47%;height:18%;border-radius:60% 60% 20% 20%;background:#171a20;z-index:2}
+.body{position:absolute;top:35%;left:12%;width:76%;height:52%;background:#142b43;border:3px solid #47708f;border-radius:22% 22% 12% 12%}
+.body:after{content:"FCC";position:absolute;right:-7%;top:18%;background:#0b3157;border:2px solid #66baff;border-radius:50%;padding:8px;font-size:clamp(7px,1.8vw,11px);font-weight:900}
+.legs{position:absolute;bottom:0;left:23%;width:54%;height:24%;border-left:22px solid #172333;border-right:22px solid #172333}
+.note{font-size:clamp(7px,1.8vw,10px);color:var(--muted);margin-top:1%}
+.controls{height:5%;display:flex;gap:10px;justify-content:center;align-items:center}
+button{border:1px solid #2b8bd4;background:#10365b;color:white;padding:7px 15px;border-radius:8px;font-weight:800}
+.status{font-size:10px;color:#9fb0c2}
+@media(min-width:700px){.stage{width:min(100vw,540px)}}
+</style>
+</head>
+<body>
+<main class="stage">
+<header><div><div class="brand">PERSIB CONTENT FACTORY</div><div class="sub">BOBOTOH EDITORIAL DESK</div></div><div class="tag">PREDIKSI STARTING XI</div></header>
+<section class="visual">
+<div class="kicker">LINEUP REVEAL • DEMO</div><h1>11 PEMAIN — SATU PER SATU</h1>
+<div class="layout"><div class="pitch" id="pitch"><div class="boxline"></div></div><div class="cards" id="cards"></div></div>
+</section>
+<section class="host"><div class="kicker">BOBOTOH CASUALS HOST • PLACEHOLDER</div><div class="silhouette"><div class="hair"></div><div class="head"></div><div class="body"></div><div class="legs"></div></div><div class="note">Master chibi final akan menggantikan siluet ini.</div></section>
+<div class="controls"><button id="play">MULAI REVEAL</button><button id="reset">ULANGI</button><span class="status" id="status">Siap</span></div>
+</main>
+<script>
+const players=[
+ {n:1,name:"KIPER DEMO",pos:"GK",x:9,y:50},
+ {n:2,name:"BEK KANAN",pos:"RB",x:27,y:16},
+ {n:3,name:"BEK TENGAH 1",pos:"CB",x:25,y:39},
+ {n:4,name:"BEK TENGAH 2",pos:"CB",x:25,y:61},
+ {n:5,name:"BEK KIRI",pos:"LB",x:27,y:84},
+ {n:6,name:"GELANDANG 1",pos:"CM",x:48,y:28},
+ {n:7,name:"GELANDANG 2",pos:"CM",x:48,y:50},
+ {n:8,name:"GELANDANG 3",pos:"AM",x:48,y:72},
+ {n:9,name:"SAYAP KANAN",pos:"RW",x:75,y:22},
+ {n:10,name:"PENYERANG",pos:"ST",x:88,y:50},
+ {n:11,name:"SAYAP KIRI",pos:"LW",x:75,y:78}
+];
+const pitch=document.getElementById('pitch'),cards=document.getElementById('cards'),status=document.getElementById('status');
+players.forEach((p,i)=>{
+ const m=document.createElement('span');m.className='marker';m.style.left=p.x+'%';m.style.top=p.y+'%';m.id='m'+i;pitch.appendChild(m);
+ const c=document.createElement('div');c.className='card';c.id='c'+i;
+ c.innerHTML='<div class="flip"><div class="face back">POSISI '+p.pos+'</div><div class="face front"><div class="avatar">'+p.n+'</div><div class="num">'+String(p.n).padStart(2,'0')+'</div><div><div class="name">'+p.name+'</div><div class="pos">'+p.pos+'</div></div></div></div>';
+ cards.appendChild(c);
+});
+let timer=null;
+function clearReveal(){if(timer)clearInterval(timer);timer=null;players.forEach((_,i)=>{document.getElementById('c'+i).classList.remove('revealed');document.getElementById('m'+i).classList.remove('active')});status.textContent='Siap'}
+function start(){clearReveal();let i=0;status.textContent='Memperkenalkan pemain...';timer=setInterval(()=>{if(i>=players.length){clearInterval(timer);timer=null;status.textContent='Starting XI lengkap';return}document.getElementById('c'+i).classList.add('revealed');document.getElementById('m'+i).classList.add('active');i++},520)}
+document.getElementById('play').addEventListener('click',start);
+document.getElementById('reset').addEventListener('click',clearReveal);
+</script>
+</body></html>
