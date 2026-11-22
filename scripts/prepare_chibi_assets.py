@@ -1,46 +1,84 @@
 from pathlib import Path
-from PIL import Image
-from rembg import remove
+import copy
+import xml.etree.ElementTree as ET
+
+import cairosvg
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "assets" / "chibi" / "master-sheet.png"
+SOURCE = ROOT / "assets" / "chibi" / "master-sheet.svg"
 OUT = ROOT / "assets" / "chibi" / "expressions"
 
-# Crop regions are based on the current 1214x1295 character-sheet draft.
-# Coordinates are scaled automatically if the source image is resized.
-REFERENCE_SIZE = (1214, 1295)
-CROPS = {
-    "normal": (438, 185, 665, 420),
-    "senang": (675, 185, 910, 420),
-    "analisis": (915, 185, 1140, 420),
-    "marah": (445, 480, 670, 700),
-    "kaget": (680, 480, 910, 700),
-    "kecewa": (915, 480, 1140, 700),
+NS = {"svg": "http://www.w3.org/2000/svg"}
+ET.register_namespace("", NS["svg"])
+
+# Crop windows are centered on the six character poses in master-sheet.svg.
+# Each export has a transparent background and excludes the caption below it.
+POSES = {
+    "normal": (265, 315),
+    "senang": (800, 315),
+    "analisis": (1335, 315),
+    "marah": (265, 675),
+    "kaget": (800, 675),
+    "kecewa": (1335, 675),
 }
+CROP_W = 320
+CROP_H = 490
+TOP_OFFSET = 175
+
+def local_name(tag):
+    return tag.rsplit("}", 1)[-1]
 
 def main():
     if not SOURCE.exists():
-        raise SystemExit(
-            "Master sheet belum ditemukan. Upload character sheet sebagai "
-            "assets/chibi/master-sheet.png lalu jalankan workflow lagi."
-        )
+        raise SystemExit(f"Master SVG tidak ditemukan: {SOURCE}")
+
+    tree = ET.parse(SOURCE)
+    root = tree.getroot()
+    defs = root.find("svg:defs", NS)
+    if defs is None:
+        raise SystemExit("Elemen <defs> tidak ditemukan di master SVG.")
+
+    groups = {
+        child.attrib.get("transform", ""): child
+        for child in list(root)
+        if local_name(child.tag) == "g"
+    }
 
     OUT.mkdir(parents=True, exist_ok=True)
-    with Image.open(SOURCE) as src:
-        src = src.convert("RGB")
-        sx = src.width / REFERENCE_SIZE[0]
-        sy = src.height / REFERENCE_SIZE[1]
+    for name, (cx, cy) in POSES.items():
+        transform = f"translate({cx} {cy})"
+        if transform not in groups:
+            raise SystemExit(f"Pose {name} tidak ditemukan: {transform}")
 
-        for name, (x1, y1, x2, y2) in CROPS.items():
-            box = (round(x1*sx), round(y1*sy), round(x2*sx), round(y2*sy))
-            crop = src.crop(box)
-            # Remove the white card/background so each expression can be
-            # composited over the channel's dark navy layout.
-            result = remove(crop)
-            if result.mode != "RGBA":
-                result = result.convert("RGBA")
-            result.save(OUT / f"chibi-{name}.png", optimize=True)
-            print(f"Created {OUT / f'chibi-{name}.png'}")
+        pose = copy.deepcopy(groups[transform])
+        # Captions belong to the master reference sheet, not the character asset.
+        for node in list(pose.iter()):
+            if local_name(node.tag) == "text":
+                parent = next((p for p in pose.iter() if node in list(p)), None)
+                if parent is not None:
+                    parent.remove(node)
+
+        x0 = cx - CROP_W // 2
+        y0 = cy - TOP_OFFSET
+        svg = ET.Element(
+            f"{{{NS['svg']}}}svg",
+            {
+                "width": str(CROP_W * 2),
+                "height": str(CROP_H * 2),
+                "viewBox": f"{x0} {y0} {CROP_W} {CROP_H}",
+                "version": "1.1",
+            },
+        )
+        svg.append(copy.deepcopy(defs))
+        svg.append(pose)
+
+        svg_path = OUT / f"chibi-{name}.svg"
+        png_path = OUT / f"chibi-{name}.png"
+        svg_bytes = ET.tostring(svg, encoding="utf-8", xml_declaration=True)
+        svg_path.write_bytes(svg_bytes)
+        cairosvg.svg2png(bytestring=svg_bytes, write_to=str(png_path), scale=2)
+        print(f"Created {svg_path}")
+        print(f"Created {png_path}")
 
 if __name__ == "__main__":
     main()
