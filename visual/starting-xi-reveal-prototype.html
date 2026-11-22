@@ -11,7 +11,7 @@
 header{height:11%;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--blue);padding:0 2%}
 .brand{font-size:clamp(12px,3.5vw,20px);font-weight:900;letter-spacing:.11em}.sub{font-size:clamp(7px,1.7vw,10px);color:var(--muted);letter-spacing:.2em;margin-top:5px}
 .tag{background:#10365b;border:1px solid #258ee2;padding:9px 12px;border-radius:9px;font-size:clamp(8px,2vw,12px);font-weight:800}
-.visual{height:43%;background:#091522;border:1px solid #28435f;border-radius:15px;padding:3%;display:flex;flex-direction:column;min-height:0}
+.visual{height:49%;background:#091522;border:1px solid #28435f;border-radius:15px;padding:3%;display:flex;flex-direction:column;min-height:0}
 .kicker{font-size:clamp(8px,1.8vw,11px);color:#70bfff;letter-spacing:.2em;font-weight:800}
 h1{font-size:clamp(17px,4.2vw,25px);margin:7px 0 12px}
 .layout{display:grid;grid-template-columns:44% 56%;gap:2%;flex:1;min-height:0}
@@ -60,17 +60,17 @@ button{border:1px solid #2b8bd4;background:#10365b;color:white;padding:7px 15px;
 </main>
 <script>
 const players=[
- {n:1,name:"KIPER DEMO",pos:"GK",x:9,y:50},
- {n:2,name:"BEK KANAN",pos:"RB",x:27,y:16},
- {n:3,name:"BEK TENGAH 1",pos:"CB",x:25,y:39},
- {n:4,name:"BEK TENGAH 2",pos:"CB",x:25,y:61},
- {n:5,name:"BEK KIRI",pos:"LB",x:27,y:84},
- {n:6,name:"GELANDANG 1",pos:"CM",x:48,y:28},
- {n:7,name:"GELANDANG 2",pos:"CM",x:48,y:50},
- {n:8,name:"GELANDANG 3",pos:"AM",x:48,y:72},
- {n:9,name:"SAYAP KANAN",pos:"RW",x:75,y:22},
- {n:10,name:"PENYERANG",pos:"ST",x:88,y:50},
- {n:11,name:"SAYAP KIRI",pos:"LW",x:75,y:78}
+ {n:1,name:"KIPER DEMO",pos:"GK",x:50,y:92},
+ {n:2,name:"BEK KANAN",pos:"RB",x:18,y:72},
+ {n:3,name:"BEK TENGAH 1",pos:"CB",x:39,y:72},
+ {n:4,name:"BEK TENGAH 2",pos:"CB",x:61,y:72},
+ {n:5,name:"BEK KIRI",pos:"LB",x:82,y:72},
+ {n:6,name:"GELANDANG 1",pos:"CM",x:27,y:48},
+ {n:7,name:"GELANDANG 2",pos:"CM",x:50,y:48},
+ {n:8,name:"GELANDANG 3",pos:"AM",x:73,y:48},
+ {n:9,name:"SAYAP KANAN",pos:"RW",x:22,y:24},
+ {n:10,name:"PENYERANG",pos:"ST",x:50,y:12},
+ {n:11,name:"SAYAP KIRI",pos:"LW",x:78,y:24}
 ];
 const pitch=document.getElementById('pitch'),cards=document.getElementById('cards'),status=document.getElementById('status');
 players.forEach((p,i)=>{
