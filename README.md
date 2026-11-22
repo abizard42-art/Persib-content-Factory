@@ -14,14 +14,16 @@ Workflow produksi konten Persib Bandung berbasis riset, keputusan editorial manu
 2. Editorial inbox — setiap jadwal monitor, sistem membuat file kandidat PENDING di editorial/inbox/ (maksimal 5 kandidat per kategori dan 25 total per run; kandidat yang sudah ada dilewati).
 3. Editorial — topik berita/transfer melalui seleksi editor; prediksi Starting XI memakai jalur riset cepat oleh asisten sesuai editorial/STARTING-XI-PLAYBOOK.md.
 4. Content — 02 - Build Script Draft hanya berjalan untuk file editorial berstatus APPROVED FOR SCRIPT; sistem menyusun kerangka draf dari bahan editor.
-5. Voice — tempel naskah final ke workflow 04 - Generate Persib Narration Audio; unduh artifact persib-narration-audio berisi WAV, teks, metadata, dan atribusi model. Dengarkan dan QC sebelum dipakai.\n6. Visual & Render — gabungkan audio WAV dengan komposisi foto berizin, grafis taktik, dan presenter chibi.
-6. Quality Control — cek fakta, visual, audio, hak penggunaan aset, dan durasi.
-7. Publish — upload/penjadwalan hanya setelah persetujuan manual.
+5. Voice — tempel naskah final ke workflow 04 - Generate Persib Narration Audio; unduh artifact persib-narration-audio berisi WAV, teks, metadata, dan atribusi model. Dengarkan dan QC sebelum dipakai.
+6. Visual & Render — gabungkan audio WAV dengan komposisi foto berizin, grafis taktik, dan presenter chibi.
+7. Quality Control — cek fakta, visual, audio, hak penggunaan aset, dan durasi.
+8. Publish — upload/penjadwalan hanya setelah persetujuan manual.
 
 ## Struktur awal
 - config/: konfigurasi channel, sumber, dan produksi.
 - audio/VOICE-AUDITION.md: jalur audisi TTS Bahasa Indonesia self-hosted yang ditargetkan full free, tanpa billing cloud.
-- .github/workflows/03-generate-voice-audition.yml: workflow audisi awal Laras TTS.\n- .github/workflows/04-generate-narration.yml: workflow manual untuk mengubah naskah final menjadi paket audio narasi WAV siap masuk tahap render; memakai Laras TTS CPU dan tanpa API TTS berbayar.
+- .github/workflows/03-generate-voice-audition.yml: workflow audisi awal Laras TTS.
+- .github/workflows/04-generate-narration.yml: workflow manual untuk mengubah naskah final menjadi paket audio narasi WAV siap masuk tahap render; memakai Laras TTS CPU dan tanpa API TTS berbayar.
 - audio/audition-script.txt: naskah default audisi suara Persib.
 - audio/VOICE-AUDITION.md: catatan audisi dan persetujuan baseline suara Laras TTS.
 - research/inbox/: brief riset yang baru dibuat.
