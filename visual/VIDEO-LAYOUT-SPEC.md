@@ -1,6 +1,6 @@
 # Persib Content Factory — Vertical Video Layout v1
 
-Status: **LAYOUT LOCKED FOR FIRST VIDEO TEST — final visual review pending**
+Status: **APPROVED — OFFICIAL BASE TEMPLATE FOR PERSIB CONTENT**
 
 ## 1. Canvas
 - Format: vertical 9:16 (1080 × 1920 reference canvas).
@@ -15,7 +15,7 @@ Status: **LAYOUT LOCKED FOR FIRST VIDEO TEST — final visual review pending**
 | Main visual panel | 47.5% | Photos, match moments, stats, tables, maps, or tactical diagrams; priority space for analysis and formation graphics |
 | Chibi host / narration | 40% | Consistent Bobotoh Casuals host; fixed at 40% of the canvas height |
 
-Proportions are locked for the first video test: 12.5% header, 47.5% main visual panel, and 40% chibi host.
+This is the official base template for Persib Content Factory videos. Keep the proportions fixed: 12.5% header, 47.5% main visual panel, and 40% chibi host. Content inside the main visual panel may change by episode category, but the overall screen zones remain consistent.
 
 ## 3. Header and category tabs
 Keep the channel name fixed. Change the category label to match the episode:
@@ -100,6 +100,7 @@ For the STARTING XI category, reveal the formation player by player rather than 
 - Add source/date labels where a visual makes a factual claim.
 
 ## 8. First preview acceptance checklist
+- [x] Overall placement and screen-zone proportions approved by the editor.
 - [ ] Readable on a typical Android phone without zooming.
 - [ ] Header/category is clear but does not dominate.
 - [ ] Main panel can show photos, statistics, and tactical diagrams without changing the overall layout.
