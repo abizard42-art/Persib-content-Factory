@@ -2,20 +2,38 @@
 
 Target: suara narasi Bahasa Indonesia tanpa API berbayar, tanpa billing cloud, dan tanpa langganan.
 
-## Engine kandidat
+## Engine yang dipakai
 
-**Laras TTS** — https://github.com/Urdemonlord/laras-tts
+**Laras TTS v0.2.1** — https://github.com/Urdemonlord/laras-tts
 
-- Engine self-hosted, CPU-first, kode berlisensi Apache-2.0.
-- Model kandidat: `anak10thn/pocket-tts-indonesian`, model 6-layer student.
-- Bobot model berlisensi CC BY 4.0; atribusi wajib dipertahankan.
-- Proyek Laras mendokumentasikan contoh referensi suara Common Voice Indonesia berlisensi CC0.
-- Tidak perlu API key TTS berbayar atau akun billing.
-- Status: kandidat riset; belum diintegrasikan ke repo Persib dan belum diuji di GitHub Actions.
+- Self-hosted, CPU-first, tersedia sebagai image Docker publik.
+- Kode Laras berlisensi MIT atau Apache-2.0.
+- Bobot Pocket TTS Indonesian oleh anak10thn berlisensi CC BY 4.0; atribusi wajib dipertahankan.
+- Referensi suara bawaan workflow diambil dari Common Voice Indonesia dan dinyatakan CC0 oleh proyek Laras.
+- Tidak memerlukan API key TTS berbayar atau akun billing.
+- Workflow memakai GitHub Actions runner dan menyimpan hasil sebagai artifact selama 7 hari.
 
-## Naskah uji
+## Cara menjalankan audisi
 
-> Bobotoh, tarik napas dulu! Persib bukan cuma soal siapa yang paling terkenal, tapi siapa yang paling siap bertarung di lapangan. Dalam sepak bola, satu keputusan kecil bisa mengubah jalannya pertandingan. Karena itu, kita nggak cukup cuma lihat nama di atas kertas. Kita cek kondisi pemain, baca kebutuhan taktik, lalu berani menyampaikan analisis dengan alasan yang jelas. Ini Persib, ini waktunya kita bahas dengan kepala dingin… tapi semangat tetap membara!
+1. Buka tab **Actions** di repository Persib Content Factory.
+2. Pilih **03 - Generate Persib Voice Audition**.
+3. Tekan **Run workflow** pada branch `main`.
+4. Biarkan kolom teks kosong untuk memakai naskah default, atau isi naskah sendiri (maksimal 3.000 karakter).
+5. Setelah workflow selesai, buka hasil run dan unduh artifact **persib-voice-audition**.
+6. Dengarkan file WAV di dalam ZIP.
+
+Workflow memakai Laras TTS v0.2.1 yang dipin ke tag rilis, mengunduh model publik, memverifikasi SHA-256 setiap berkas, lalu membuat WAV. Workflow ini belum dianggap lulus sampai run pertama berhasil dan audionya didengarkan.
+
+## Naskah uji default
+
+> Bobotoh, tarik napas dulu! Persib bukan cuma soal siapa yang paling terkenal, tapi siapa yang paling siap bertarung di lapangan. Dalam sepak bola, satu keputusan kecil bisa mengubah jalannya pertandingan. Karena itu, kita nggak cukup cuma lihat nama di atas kertas. Kita cek kondisi pemain, baca kebutuhan taktik, lalu berani menyampaikan analisis dengan alasan yang jelas. Ini Persib, ini waktunya kita bahas dengan kepala dingin, tapi semangat tetap membara!
+
+## Catatan suara
+
+- Audisi pertama memakai rekaman referensi Common Voice CC0 yang disediakan proyek Laras. Karakter suara yang keluar akan mengikuti rekaman referensi itu; belum tentu cocok dengan target presenter pria yang kita inginkan.
+- Kalau karakter suaranya belum cocok, langkah berikutnya adalah memakai rekaman referensi milik sendiri atau rekaman orang yang memberi izin jelas. Jangan mengkloning suara orang tanpa persetujuan.
+- Workflow memakai satu take untuk pratinjau cepat. Kualitas pengucapan nama pemain dan istilah sepak bola tetap harus diperiksa.
+- Engine dapat menghasilkan suara yang terdengar natural, tetapi model punya keterbatasan artikulasi pada beberapa gugus konsonan dan kosakata.
 
 ## Rubrik penilaian editor
 
@@ -32,10 +50,10 @@ Beri skor 1–5 setelah audio berhasil dibuat:
 
 **Catatan editor:** belum diisi.
 
-## Catatan lisensi dan biaya
+## Lisensi dan biaya
 
-1. Lisensi kode engine dan lisensi bobot model adalah dua hal berbeda. Cantumkan atribusi CC BY 4.0 untuk model.
-2. Gunakan hanya rekaman referensi suara yang lisensinya jelas; jangan memakai suara orang tanpa izin.
-3. Repo TTS Indonesia Gratis lain yang ditemukan menyatakan “DO NOT USE FOR COMMERCIAL PURPOSES”, jadi tidak dipilih untuk channel yang berpotensi dimonetisasi.
-4. Jalur ini tidak memakai layanan TTS cloud berbayar. Tetap periksa batas penggunaan GitHub Actions dan penyimpanan artefak; jangan mengaktifkan layanan berbayar.
-5. Belum ada audio yang dihasilkan dan belum ada klaim kualitas sebelum tes nyata.
+1. Sertakan atribusi: **“Pocket TTS Indonesian oleh anak10thn, CC-BY-4.0”** beserta tautan https://huggingface.co/anak10thn/pocket-tts-indonesian.
+2. Lisensi kode Laras tidak menggantikan lisensi bobot model.
+3. Tidak memakai layanan TTS cloud berbayar atau billing cloud.
+4. GitHub Actions pada repo publik digunakan untuk proses audisi; artifact hasil audisi disimpan 7 hari lalu kedaluwarsa.
+5. Jangan aktifkan layanan berbayar atau mengubah workflow ke provider berbayar tanpa persetujuan eksplisit editor.
