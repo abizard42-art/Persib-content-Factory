@@ -52,6 +52,34 @@ Do not force every episode into the same visual type. Keep text short enough to 
 - Prefer subtle transitions and clear visual hierarchy over constant movement.
 - Avoid covering faces, player names, key statistics, or tactical markings with subtitles.
 
+
+## 6.1 Starting XI reveal animation
+For the STARTING XI category, reveal the formation player by player rather than showing the full lineup immediately.
+
+### Sequence
+1. Show the empty pitch and formation markers briefly.
+2. Reveal the goalkeeper first, then defenders, midfielders, and forwards in a deliberate sequence.
+3. Each player marker/card uses a smooth 3D-style flip or horizontal turn to reveal the player information.
+4. On reveal, show a small player portrait on the left side of the card, shirt number prominently, and the player's name beside it.
+5. Keep the player's position marker on the pitch connected visually to the corresponding card, so viewers can identify the role and location.
+6. Finish with the complete XI visible together for a short hold.
+
+### Motion direction
+- Use a smooth ease-in-out transition, approximately 350–500 ms per player reveal.
+- Stagger reveals with a short 120–180 ms gap; avoid flashing all cards at once.
+- Use a subtle Persib-blue glow or edge highlight on the active reveal, then settle to a calm blue/white card.
+- Keep the portrait small and cropped consistently; prioritize shirt number and readable name.
+- If a licensed player photo is unavailable, use a neutral initials/number tile rather than inventing a likeness.
+- The formation should remain readable on a phone. Avoid overlapping cards; use compact labels near the pitch or a paired pitch-and-lineup layout if the full names do not fit.
+- The reveal order is a presentation choice, not evidence of the official lineup. Label the graphic **PREDIKSI STARTING XI** until the official team sheet is released.
+
+### Data per player
+- Shirt number
+- Player name
+- Position / role
+- Small portrait (licensed or otherwise authorized)
+- Pitch coordinates for the selected formation
+
 ## 7. Editorial and rights checks
 - Distinguish official information, reputable media reports, unconfirmed rumors, and editorial analysis.
 - Predicted lineups must be labeled as predictions, never as official lineups.
