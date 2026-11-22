@@ -1,0 +1,142 @@
+name: 04 - Generate Persib Narration Audio
+
+on:
+  workflow_dispatch:
+    inputs:
+      narration_text:
+        description: "Tempel naskah narasi final Bahasa Indonesia (maksimal 10.000 karakter)"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: persib-narration-audio
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout Persib Content Factory
+        uses: actions/checkout@v4
+
+      - name: Validate narration and prepare metadata
+        env:
+          NARRATION_TEXT: ${{ inputs.narration_text }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+
+          text = os.environ.get("NARRATION_TEXT", "").strip()
+          if not text:
+              raise SystemExit("Naskah narasi wajib diisi.")
+          if len(text) > 10000:
+              raise SystemExit("Naskah melebihi batas 10.000 karakter.")
+          Path("audio/request.json").write_text(
+              json.dumps({"text": text, "takes": 3}, ensure_ascii=False),
+              encoding="utf-8"
+          )
+          Path("output/persib-narration").mkdir(parents=True, exist_ok=True)
+          Path("output/persib-narration/narration.txt").write_text(text + "\\n", encoding="utf-8")
+          Path("output/persib-narration/credits.txt").write_text(
+              "Pocket TTS Indonesian oleh anak10thn, CC-BY-4.0\\n"
+              "Model: https://huggingface.co/anak10thn/pocket-tts-indonesian\\n"
+              "Engine: Laras TTS v0.2.1 — https://github.com/Urdemonlord/laras-tts\\n",
+              encoding="utf-8"
+          )
+          Path("output/persib-narration/metadata.json").write_text(
+              json.dumps({
+                  "project": "Persib Content Factory",
+                  "language": "id-ID",
+                  "engine": "Laras TTS",
+                  "engine_release": "v0.2.1",
+                  "model": "anak10thn/pocket-tts-indonesian",
+                  "requested_takes": 3,
+                  "format": "WAV, 24 kHz, mono, PCM16",
+                  "editorial_status": "audio generated; human listening/QC required",
+                  "publishing": "not authorized"
+              }, ensure_ascii=False, indent=2) + "\\n",
+              encoding="utf-8"
+          )
+          print(f"Naskah valid: {len(text)} karakter.")
+          PY
+
+      - name: Get pinned Laras TTS release
+        run: |
+          git clone --depth 1 --branch v0.2.1 https://github.com/Urdemonlord/laras-tts.git laras
+
+      - name: Download and verify free Indonesian model
+        run: |
+          bash laras/scripts/unduh-model.sh \\
+            --dir "$GITHUB_WORKSPACE/laras/data/models" \\
+            --ref-dir "$GITHUB_WORKSPACE/laras/data/ref"
+
+      - name: Pull public CPU-only TTS image
+        run: docker pull ghcr.io/urdemonlord/laras-tts:0.2.1
+
+      - name: Start local TTS engine
+        run: |
+          docker run -d --name laras-tts \\
+            -p 127.0.0.1:8080:8080 \\
+            -v "$GITHUB_WORKSPACE/laras/data:/data" \\
+            -e MODELS_DIR=/data/models \\
+            -e REF_WAV=/data/ref/common_voice_id_19961910.mp3 \\
+            -e CACHE_DIR=/data/cache \\
+            -e LARAS_LANG=id \\
+            -e TAKES=3 \\
+            -e CHUNK=1 \\
+            -e CHUNK_TAKES=3 \\
+            -e USE_ASR=0 \\
+            -e THREADS=4 \\
+            ghcr.io/urdemonlord/laras-tts:0.2.1
+
+      - name: Wait for engine and generate narration WAV
+        run: |
+          ready=0
+          for attempt in $(seq 1 90); do
+            if curl --silent --fail http://127.0.0.1:8080/health > /tmp/laras-health.json; then
+              cat /tmp/laras-health.json
+              ready=1
+              break
+            fi
+            sleep 2
+          done
+
+          if [ "$ready" -ne 1 ]; then
+            echo "Laras tidak siap dalam 180 detik."
+            docker logs laras-tts || true
+            exit 1
+          fi
+
+          curl --silent --show-error --fail \\
+            --max-time 1800 \\
+            -X POST http://127.0.0.1:8080/tts \\
+            -H 'content-type: application/json' \\
+            --data-binary @audio/request.json \\
+            -D output/persib-narration/response-headers.txt \\
+            -o output/persib-narration/persib-narration.wav
+
+          test -s output/persib-narration/persib-narration.wav
+          file output/persib-narration/persib-narration.wav
+          grep -iE 'x-cache|x-duration|x-wer' output/persib-narration/response-headers.txt || true
+
+      - name: Show engine logs
+        if: always()
+        run: docker logs laras-tts || true
+
+      - name: Upload render-ready narration package
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: persib-narration-audio
+          path: output/persib-narration/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Stop TTS engine
+        if: always()
+        run: docker rm -f laras-tts || true
