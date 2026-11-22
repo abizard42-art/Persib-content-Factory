@@ -82,7 +82,7 @@ def draw_pitch(im, players, active):
     return im
 
 
-def draw_card(d, p, idx, x, y, w, h, reveal, active):
+def draw_card(im, d, p, idx, x, y, w, h, reveal, active):
     # reveal 0..1. Horizontal squeeze simulates a card flip.
     angle = abs(math.cos(max(0.0, min(1.0, reveal)) * math.pi))
     card_w = max(8, int(w * angle))
@@ -100,9 +100,9 @@ def draw_card(d, p, idx, x, y, w, h, reveal, active):
         return
     photo_size = min(48, h-10)
     photo = crop_circle(p.get("photo"), photo_size)
-    im_dummy = None
-    # caller draws image on a frame layer; reserve photo slot as a stylized portrait tile
-    d.ellipse((left+8, y+(h-photo_size)//2, left+8+photo_size, y+(h+photo_size)//2), fill=(184, 213, 235), outline=WHITE, width=2)
+    px, py = left+8, y+(h-photo_size)//2
+    im.paste(photo, (px, py), photo)
+    d.ellipse((px, py, px+photo_size, py+photo_size), outline=WHITE, width=2)
     num = str(p.get("number", idx+1)).zfill(2)
     d.text((left+photo_size+18, y+h//2), num, font=font(27, True), fill=WHITE, anchor="lm")
     name_x = left+photo_size+78
@@ -142,7 +142,7 @@ def render_frame(players, title, revealed_count, current_idx, current_progress, 
             progress = current_progress
         else:
             progress = 0.0
-        draw_card(d, p, i, card_x, y, card_w, card_h, progress, i == current_idx)
+        draw_card(im, d, p, i, card_x, y, card_w, card_h, progress, i == current_idx)
     # host placeholder
     rounded(d, (48, 1250, 1032, 1850), 26, (9, 17, 29), (39, 66, 91), 3)
     d.text((82, 1295), "BOBOTOH CASUALS HOST", font=font(23, True), fill=(103, 190, 255))
