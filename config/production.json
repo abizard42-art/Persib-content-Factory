@@ -19,7 +19,7 @@
     "language": "id-ID",
     "provider": "self_hosted_open_source_tts",
     "persona": "passionate Persib supporter and energetic football presenter",
-    "voice_status": "open_source_engine_candidate_pending_cpu_audition",
+    "voice_status": "audition_heard_and_approved_by_editor",
     "voice_candidates": [],
     "core_style": [
       "semangat tinggi",
@@ -62,7 +62,7 @@
       "Do not present unverified claims as facts.",
       "Keep the voice energetic without sacrificing clarity or credibility."
     ],
-    "voice_selection": "Do not finalize the voice until the editor listens to a generated sample using a properly licensed reference voice and approves it.",
+    "voice_selection": "APPROVED: Laras TTS v0.2.1 using the bundled Common Voice Indonesian CC0 reference voice. Editor has listened to the audition and approved this voice as the baseline for Persib narration.",
     "engine_candidate": {
       "name": "Laras TTS",
       "repository": "https://github.com/Urdemonlord/laras-tts",
@@ -70,7 +70,7 @@
       "model": "anak10thn/pocket-tts-indonesian",
       "model_license": "CC-BY-4.0",
       "execution": "GitHub-hosted ubuntu-latest CPU runner; self-hosted Laras Docker image; no paid TTS API or billing",
-      "status": "candidate_not_yet_integrated_or_tested",
+      "status": "audition_generated_and_listened_by_editor",
       "notes": [
         "Use only the 6-layer Indonesian student model as documented by the model publisher.",
         "Use a voice reference recording with a clear license; the Laras project documents a CC0 Common Voice Indonesian reference sample.",
@@ -81,6 +81,12 @@
       "release": "v0.2.1",
       "workflow": ".github/workflows/03-generate-voice-audition.yml",
       "output": "GitHub Actions artifact: persib-voice-audition (WAV, retained 7 days)"
+    },
+    "audition": {
+      "status": "completed_and_approved_by_editor",
+      "reference_voice": "Common Voice Indonesian CC0 sample bundled by Laras",
+      "approval_basis": "User confirmed they listened and said the voice is okay.",
+      "note": "Use this as the initial voice baseline. Revisit only if the editor requests a different voice character."
     }
   },
   "rendering": {
