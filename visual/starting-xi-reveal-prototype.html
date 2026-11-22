@@ -16,9 +16,9 @@ header{height:11%;display:flex;align-items:center;justify-content:space-between;
 h1{font-size:clamp(17px,4.2vw,25px);margin:7px 0 12px}
 .layout{display:grid;grid-template-columns:44% 56%;gap:2%;flex:1;min-height:0}
 .pitch{position:relative;border:1px solid #77a996;border-radius:8px;background:repeating-linear-gradient(0deg,#10463a 0 36px,#0e3c33 36px 72px);overflow:hidden}
-.pitch:before{content:"";position:absolute;inset:0 0 0 50%;border-left:1px solid #b6e4d0aa}
+.pitch:before{content:"";position:absolute;inset:50% 0 0 0;border-top:1px solid #b6e4d0aa}
 .pitch:after{content:"";position:absolute;width:28%;aspect-ratio:1;border:1px solid #b6e4d0aa;border-radius:50%;left:36%;top:39%}
-.boxline{position:absolute;left:0;top:31%;height:38%;width:18%;border:1px solid #b6e4d0aa}
+.boxline{position:absolute;left:31%;top:0;height:18%;width:38%;border:1px solid #b6e4d0aa}
 .marker{position:absolute;transform:translate(-50%,-50%);width:clamp(12px,3vw,17px);height:clamp(12px,3vw,17px);border:2px solid white;border-radius:50%;background:#183e62;box-shadow:0 0 0 2px #07111c;opacity:.18;transition:opacity .35s,transform .35s,box-shadow .35s}
 .marker.active{opacity:1;transform:translate(-50%,-50%) scale(1.28);background:#fff;box-shadow:0 0 0 3px var(--blue),0 0 15px #4bb5ff}
 .cards{display:flex;flex-direction:column;gap:3px;min-height:0;justify-content:space-between}
