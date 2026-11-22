@@ -35,12 +35,15 @@ jobs:
           CUSTOM_QUERY: ${{ inputs.custom_query }}
         run: python scripts/collect_persib_news.py
 
+      - name: Create pending editorial inbox files
+        run: python scripts/create_editorial_inbox.py
+
       - name: Save digest directly to repository
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add research/daily/
+          git add research/daily/ editorial/inbox/
           if git diff --cached --quiet; then
             echo "No digest changes to save."
             exit 0
