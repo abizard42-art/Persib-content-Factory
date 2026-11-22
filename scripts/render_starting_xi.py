@@ -118,16 +118,16 @@ def render_frame(players, title, revealed_count, current_idx, current_progress, 
     im = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(im)
     # subtle header
-    d.rectangle((0, 0, W, 250), fill=(8, 14, 24))
+    d.rectangle((0, 0, W, 240), fill=(8, 14, 24))
     d.text((62, 58), "PERSIB CONTENT FACTORY", font=font(42, True), fill=WHITE)
     d.text((64, 119), "BOBOTOH EDITORIAL DESK", font=font(20, True), fill=MUTED)
     rounded(d, (700, 65, 1015, 145), 16, (13, 53, 88), BLUE, 2)
     d.text((857, 105), title.upper(), font=font(22, True), fill=WHITE, anchor="mm")
-    d.rectangle((0, 242, W, 250), fill=BLUE)
+    d.rectangle((0, 232, W, 240), fill=BLUE)
     # visual panel
-    rounded(d, (48, 260, 1032, 1162), 26, PANEL, (39, 66, 91), 3)
-    d.text((82, 325), "STARTING XI REVEAL", font=font(23, True), fill=(103, 190, 255))
-    d.text((82, 370), "11 PEMAIN • SATU PER SATU", font=font(34, True), fill=WHITE)
+    rounded(d, (48, 240, 1032, 1152), 26, PANEL, (39, 66, 91), 3)
+    d.text((82, 300), "STARTING XI REVEAL", font=font(23, True), fill=(103, 190, 255))
+    d.text((82, 345), "11 PEMAIN • SATU PER SATU", font=font(34, True), fill=WHITE)
     draw_pitch(im, players, current_idx if current_idx >= 0 else -1)
     d = ImageDraw.Draw(im)
     # player cards to right, one compact row per player
@@ -144,7 +144,7 @@ def render_frame(players, title, revealed_count, current_idx, current_progress, 
             progress = 0.0
         draw_card(im, d, p, i, card_x, y, card_w, card_h, progress, i == current_idx)
     # host placeholder
-    rounded(d, (48, 1152, 1032, 1900), 26, (9, 17, 29), (39, 66, 91), 3)
+    rounded(d, (48, 1152, 1032, 1920), 26, (9, 17, 29), (39, 66, 91), 3)
     d.text((82, 1180), "BOBOTOH CASUALS HOST", font=font(23, True), fill=(103, 190, 255))
     # silhouette placeholder, intentionally not final chibi artwork
     d.ellipse((430, 1270, 650, 1490), fill=(201, 143, 104), outline=(119, 79, 58), width=5)
@@ -153,7 +153,7 @@ def render_frame(players, title, revealed_count, current_idx, current_progress, 
     rounded(d, (660, 1510, 730, 1580), 34, (10, 49, 87), (95, 185, 245), 3)
     d.text((695, 1545), "FCC", font=font(18, True), fill=WHITE, anchor="mm")
     d.text((540, 1800), "HOST PLACEHOLDER • MASTER CHIBI MENYUSUL", font=font(18, True), fill=MUTED, anchor="mm")
-    d.text((540, 1888), "DEMO LINEUP — BUKAN SUSUNAN RESMI", font=font(17, True), fill=(122, 145, 166), anchor="mm")
+    d.text((540, 1890), "DEMO LINEUP — BUKAN SUSUNAN RESMI", font=font(17, True), fill=(122, 145, 166), anchor="mm")
     return im
 
 
