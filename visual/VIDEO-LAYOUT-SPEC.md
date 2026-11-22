@@ -73,6 +73,15 @@ For the STARTING XI category, reveal the formation player by player rather than 
 - The formation should remain readable on a phone. Avoid overlapping cards; use compact labels near the pitch or a paired pitch-and-lineup layout if the full names do not fit.
 - The reveal order is a presentation choice, not evidence of the official lineup. Label the graphic **PREDIKSI STARTING XI** until the official team sheet is released.
 
+
+### Layout composition for the lineup reveal
+- Keep the pitch on the **left half** of the main visual panel.
+- Place compact player reveal cards in a neat column on the **right half**, aligned by line/role where possible.
+- Each card flips to reveal: small portrait thumbnail on its left edge, shirt number, then player name and short position label.
+- When a card reveals, illuminate the matching player's marker on the left-side pitch; then return it to the normal state.
+- For the final hold, show all 11 markers on the pitch and all 11 compact cards together. If text becomes too small at phone size, split the reveal into defensive, midfield, and attacking groups rather than shrinking labels.
+- The flip should reveal the actual player information on the reverse face; do not use a meaningless mirrored name or a card that only spins decoratively.
+
 ### Data per player
 - Shirt number
 - Player name
