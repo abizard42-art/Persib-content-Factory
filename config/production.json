@@ -2,48 +2,25 @@
   "timezone": "Asia/Jakarta",
   "shorts": {
     "aspect_ratio": "9:16",
-    "target_duration_seconds": [30, 60],
+    "target_duration_seconds": [
+      30,
+      60
+    ],
     "resolution": "1080x1920"
   },
   "long_video": {
-    "target_duration_minutes": [4, 8],
+    "target_duration_minutes": [
+      4,
+      8
+    ],
     "resolution": "1920x1080"
   },
   "voiceover": {
     "language": "id-ID",
-    "provider": "google_cloud_text_to_speech",
+    "provider": "self_hosted_open_source_tts",
     "persona": "passionate Persib supporter and energetic football presenter",
-    "voice_status": "candidate_pending_audio_audition",
-    "voice_candidates": [
-      {
-        "voice_name": "id-ID-Chirp3-HD-Orus",
-        "voice_family": "Chirp3-HD",
-        "gender": "male",
-        "priority": 1,
-        "reason": "First candidate to audition for a confident, expressive football presenter."
-      },
-      {
-        "voice_name": "id-ID-Chirp3-HD-Algieba",
-        "voice_family": "Chirp3-HD",
-        "gender": "male",
-        "priority": 2,
-        "reason": "Alternative male voice to compare for a firm, energetic delivery."
-      },
-      {
-        "voice_name": "id-ID-Chirp3-HD-Puck",
-        "voice_family": "Chirp3-HD",
-        "gender": "male",
-        "priority": 3,
-        "reason": "Alternative male voice to compare for a lively, conversational delivery."
-      },
-      {
-        "voice_name": "id-ID-Wavenet-B",
-        "voice_family": "WaveNet",
-        "gender": "male",
-        "priority": 4,
-        "reason": "Lower-cost fallback if HD candidates do not fit or usage needs a cheaper voice family."
-      }
-    ],
+    "voice_status": "open_source_engine_candidate_pending_cpu_audition",
+    "voice_candidates": [],
     "core_style": [
       "semangat tinggi",
       "tegas dan ekspresif",
@@ -73,10 +50,10 @@
       "rule": "Treat Igor Tolic as the current head coach reference for the 2026/2027 season, but verify the active coach and matchday staff before every episode. Do not use outdated references to Bojan Hodak as the active head coach."
     },
     "quota_safety": {
-      "monthly_character_budget": 800000,
-      "stop_before_paid_overage": true,
-      "require_explicit_editor_approval_before_changing_to_paid_usage": true,
-      "note": "Google Cloud TTS requires billing to be enabled. Chirp 3 HD has a published monthly free allowance, but overage is chargeable; keep usage capped and verify current billing settings before production."
+      "paid_tts_api": false,
+      "billing_account_required": false,
+      "paid_overage_allowed": false,
+      "note": "Target is fully free self-hosted TTS. Do not add a paid cloud TTS provider or paid fallback without explicit editor approval."
     },
     "guardrails": [
       "Do not shout continuously; use peaks, pauses, and contrast for impact.",
@@ -85,7 +62,23 @@
       "Do not present unverified claims as facts.",
       "Keep the voice energetic without sacrificing clarity or credibility."
     ],
-    "voice_selection": "Do not finalize a provider voice ID until the editor has listened to short identical sample scripts and approved the best fit."
+    "voice_selection": "Do not finalize the voice until the editor listens to a generated sample using a properly licensed reference voice and approves it.",
+    "engine_candidate": {
+      "name": "Laras TTS",
+      "repository": "https://github.com/Urdemonlord/laras-tts",
+      "engine_license": "Apache-2.0",
+      "model": "anak10thn/pocket-tts-indonesian",
+      "model_license": "CC-BY-4.0",
+      "execution": "CPU-first self-hosted; no paid TTS API or API key",
+      "status": "candidate_not_yet_integrated_or_tested",
+      "notes": [
+        "Use only the 6-layer Indonesian student model as documented by the model publisher.",
+        "Use a voice reference recording with a clear license; the Laras project documents a CC0 Common Voice Indonesian reference sample.",
+        "Provide required attribution for CC-BY-4.0 model weights in generated project documentation/credits.",
+        "Do not assume the engine's Apache-2.0 code license replaces the separate model-weight license.",
+        "Verify pronunciation, voice quality, CPU runtime, memory use, and long-script stability before production."
+      ]
+    }
   },
   "rendering": {
     "strategy": "code_rendered",
