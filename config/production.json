@@ -69,7 +69,7 @@
       "engine_license": "Apache-2.0",
       "model": "anak10thn/pocket-tts-indonesian",
       "model_license": "CC-BY-4.0",
-      "execution": "CPU-first self-hosted; no paid TTS API or API key",
+      "execution": "GitHub-hosted ubuntu-latest CPU runner; self-hosted Laras Docker image; no paid TTS API or billing",
       "status": "candidate_not_yet_integrated_or_tested",
       "notes": [
         "Use only the 6-layer Indonesian student model as documented by the model publisher.",
@@ -77,7 +77,10 @@
         "Provide required attribution for CC-BY-4.0 model weights in generated project documentation/credits.",
         "Do not assume the engine's Apache-2.0 code license replaces the separate model-weight license.",
         "Verify pronunciation, voice quality, CPU runtime, memory use, and long-script stability before production."
-      ]
+      ],
+      "release": "v0.2.1",
+      "workflow": ".github/workflows/03-generate-voice-audition.yml",
+      "output": "GitHub Actions artifact: persib-voice-audition (WAV, retained 7 days)"
     }
   },
   "rendering": {
