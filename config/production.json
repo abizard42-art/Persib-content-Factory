@@ -9,6 +9,39 @@
     "target_duration_minutes": [4, 8],
     "resolution": "1920x1080"
   },
+  "voiceover": {
+    "language": "id-ID",
+    "persona": "passionate Persib supporter and energetic football presenter",
+    "core_style": [
+      "semangat",
+      "tegas",
+      "ngotot saat membela argumen yang didukung fakta",
+      "percaya diri",
+      "natural and conversational"
+    ],
+    "delivery": {
+      "pace": "dynamic; faster for exciting match moments, slower for important facts",
+      "energy": "high but controlled",
+      "emphasis": "stress player names, key stats, tactical points, and match-defining moments",
+      "intonation": "expressive with clear rises and falls; avoid flat newsreader delivery",
+      "articulation": "clear Indonesian pronunciation; keep names and football terms understandable"
+    },
+    "tone_by_segment": {
+      "opening_hook": "high-energy, punchy, instantly engaging",
+      "match_preview": "confident, fired-up, analytical",
+      "tactical_analysis": "firm, focused, persuasive; never shout over the explanation",
+      "player_injury_or_rumor": "serious, measured, careful with uncertainty",
+      "match_review": "emotional and expressive, but grounded in what happened",
+      "call_to_action": "warm, loud, and inviting like talking to fellow Bobotoh"
+    },
+    "guardrails": [
+      "Do not shout continuously; use peaks and pauses for impact.",
+      "Do not insult players, coaches, referees, opponents, or supporters.",
+      "Do not present unverified claims as facts.",
+      "Keep the voice energetic without sacrificing clarity or credibility."
+    ],
+    "voice_selection": "Choose a natural-sounding Indonesian voice with a youthful adult masculine timbre; do not lock a provider-specific voice ID until the TTS engine is selected."
+  },
   "rendering": {
     "strategy": "code_rendered",
     "reuse_character_assets": true,
