@@ -41,11 +41,11 @@ jobs:
               encoding="utf-8"
           )
           Path("output/persib-narration").mkdir(parents=True, exist_ok=True)
-          Path("output/persib-narration/narration.txt").write_text(text + "\\n", encoding="utf-8")
+          Path("output/persib-narration/narration.txt").write_text(text + "\n", encoding="utf-8")
           Path("output/persib-narration/credits.txt").write_text(
-              "Pocket TTS Indonesian oleh anak10thn, CC-BY-4.0\\n"
-              "Model: https://huggingface.co/anak10thn/pocket-tts-indonesian\\n"
-              "Engine: Laras TTS v0.2.1 — https://github.com/Urdemonlord/laras-tts\\n",
+              "Pocket TTS Indonesian oleh anak10thn, CC-BY-4.0\n"
+              "Model: https://huggingface.co/anak10thn/pocket-tts-indonesian\n"
+              "Engine: Laras TTS v0.2.1 — https://github.com/Urdemonlord/laras-tts\n",
               encoding="utf-8"
           )
           Path("output/persib-narration/metadata.json").write_text(
@@ -59,7 +59,7 @@ jobs:
                   "format": "WAV, 24 kHz, mono, PCM16",
                   "editorial_status": "audio generated; human listening/QC required",
                   "publishing": "not authorized"
-              }, ensure_ascii=False, indent=2) + "\\n",
+              }, ensure_ascii=False, indent=2) + "\n",
               encoding="utf-8"
           )
           print(f"Naskah valid: {len(text)} karakter.")
@@ -71,8 +71,8 @@ jobs:
 
       - name: Download and verify free Indonesian model
         run: |
-          bash laras/scripts/unduh-model.sh \\
-            --dir "$GITHUB_WORKSPACE/laras/data/models" \\
+          bash laras/scripts/unduh-model.sh \
+            --dir "$GITHUB_WORKSPACE/laras/data/models" \
             --ref-dir "$GITHUB_WORKSPACE/laras/data/ref"
 
       - name: Pull public CPU-only TTS image
@@ -80,18 +80,18 @@ jobs:
 
       - name: Start local TTS engine
         run: |
-          docker run -d --name laras-tts \\
-            -p 127.0.0.1:8080:8080 \\
-            -v "$GITHUB_WORKSPACE/laras/data:/data" \\
-            -e MODELS_DIR=/data/models \\
-            -e REF_WAV=/data/ref/common_voice_id_19961910.mp3 \\
-            -e CACHE_DIR=/data/cache \\
-            -e LARAS_LANG=id \\
-            -e TAKES=3 \\
-            -e CHUNK=1 \\
-            -e CHUNK_TAKES=3 \\
-            -e USE_ASR=0 \\
-            -e THREADS=4 \\
+          docker run -d --name laras-tts \
+            -p 127.0.0.1:8080:8080 \
+            -v "$GITHUB_WORKSPACE/laras/data:/data" \
+            -e MODELS_DIR=/data/models \
+            -e REF_WAV=/data/ref/common_voice_id_19961910.mp3 \
+            -e CACHE_DIR=/data/cache \
+            -e LARAS_LANG=id \
+            -e TAKES=3 \
+            -e CHUNK=1 \
+            -e CHUNK_TAKES=3 \
+            -e USE_ASR=0 \
+            -e THREADS=4 \
             ghcr.io/urdemonlord/laras-tts:0.2.1
 
       - name: Wait for engine and generate narration WAV
@@ -112,12 +112,12 @@ jobs:
             exit 1
           fi
 
-          curl --silent --show-error --fail \\
-            --max-time 1800 \\
-            -X POST http://127.0.0.1:8080/tts \\
-            -H 'content-type: application/json' \\
-            --data-binary @audio/request.json \\
-            -D output/persib-narration/response-headers.txt \\
+          curl --silent --show-error --fail \
+            --max-time 1800 \
+            -X POST http://127.0.0.1:8080/tts \
+            -H 'content-type: application/json' \
+            --data-binary @audio/request.json \
+            -D output/persib-narration/response-headers.txt \
             -o output/persib-narration/persib-narration.wav
 
           test -s output/persib-narration/persib-narration.wav
