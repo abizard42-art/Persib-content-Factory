@@ -1,0 +1,123 @@
+name: 03 - Generate Persib Voice Audition
+
+on:
+  workflow_dispatch:
+    inputs:
+      custom_text:
+        description: "Opsional: isi teks audisi sendiri. Kosongkan untuk memakai audio/audition-script.txt"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: persib-voice-audition
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout Persib Content Factory
+        uses: actions/checkout@v4
+
+      - name: Validate text and prepare request
+        env:
+          CUSTOM_TEXT: ${{ inputs.custom_text }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+
+          custom = os.environ.get("CUSTOM_TEXT", "").strip()
+          default = Path("audio/audition-script.txt").read_text(encoding="utf-8").strip()
+          text = custom or default
+          if not text:
+              raise SystemExit("Teks audisi kosong.")
+          if len(text) > 3000:
+              raise SystemExit("Teks maksimal 3000 karakter agar waktu runner tetap terkendali.")
+          Path("audio/request.json").write_text(
+              json.dumps({"text": text, "takes": 1}, ensure_ascii=False),
+              encoding="utf-8"
+          )
+          print(f"Teks siap: {len(text)} karakter.")
+          PY
+
+      - name: Get pinned Laras TTS release
+        run: |
+          git clone --depth 1 --branch v0.2.1 https://github.com/Urdemonlord/laras-tts.git laras
+
+      - name: Download and verify free Indonesian model
+        run: |
+          bash laras/scripts/unduh-model.sh \
+            --dir "$GITHUB_WORKSPACE/laras/data/models" \
+            --ref-dir "$GITHUB_WORKSPACE/laras/data/ref"
+
+      - name: Pull public CPU-only TTS image
+        run: docker pull ghcr.io/urdemonlord/laras-tts:0.2.1
+
+      - name: Start local TTS engine
+        run: |
+          docker run -d --name laras-tts \
+            -p 127.0.0.1:8080:8080 \
+            -v "$GITHUB_WORKSPACE/laras/data:/data" \
+            -e MODELS_DIR=/data/models \
+            -e REF_WAV=/data/ref/common_voice_id_19961910.mp3 \
+            -e CACHE_DIR=/data/cache \
+            -e LARAS_LANG=id \
+            -e TAKES=1 \
+            -e CHUNK=1 \
+            -e CHUNK_TAKES=1 \
+            -e USE_ASR=0 \
+            -e THREADS=4 \
+            ghcr.io/urdemonlord/laras-tts:0.2.1
+
+      - name: Wait for engine and generate WAV
+        run: |
+          ready=0
+          for attempt in $(seq 1 90); do
+            if curl --silent --fail http://127.0.0.1:8080/health > /tmp/laras-health.json; then
+              cat /tmp/laras-health.json
+              ready=1
+              break
+            fi
+            sleep 2
+          done
+
+          if [ "$ready" -ne 1 ]; then
+            echo "Laras tidak siap dalam 180 detik."
+            docker logs laras-tts || true
+            exit 1
+          fi
+
+          mkdir -p output/voice-audition
+          curl --silent --show-error --fail \
+            --max-time 900 \
+            -X POST http://127.0.0.1:8080/tts \
+            -H 'content-type: application/json' \
+            --data-binary @audio/request.json \
+            -D output/voice-audition/response-headers.txt \
+            -o output/voice-audition/persib-voice-audition.wav
+
+          test -s output/voice-audition/persib-voice-audition.wav
+          file output/voice-audition/persib-voice-audition.wav
+          grep -iE 'x-cache|x-duration|x-wer' output/voice-audition/response-headers.txt || true
+
+      - name: Show engine logs
+        if: always()
+        run: docker logs laras-tts || true
+
+      - name: Upload audition audio
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: persib-voice-audition
+          path: output/voice-audition/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Stop TTS engine
+        if: always()
+        run: docker rm -f laras-tts || true
