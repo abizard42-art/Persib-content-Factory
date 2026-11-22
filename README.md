@@ -21,6 +21,8 @@ Workflow produksi konten Persib Bandung berbasis riset, keputusan editorial manu
 ## Struktur awal
 - config/: konfigurasi channel, sumber, dan produksi.
 - audio/VOICE-AUDITION.md: jalur audisi TTS Bahasa Indonesia self-hosted yang ditargetkan full free, tanpa billing cloud.
+- .github/workflows/03-generate-voice-audition.yml: workflow manual untuk menghasilkan WAV audisi TTS di GitHub Actions, tanpa API berbayar.
+- audio/audition-script.txt: naskah default audisi suara Persib.
 - audio/VOICE-AUDITION.md: naskah identik dan rubrik untuk membandingkan kandidat suara; belum ada audio yang dibuat.
 - research/inbox/: brief riset yang baru dibuat.
 - editorial/inbox/: kandidat berita yang dibuat otomatis dan masih berstatus PENDING.
