@@ -1,0 +1,16 @@
+{
+  "title": "PREDIKSI STARTING XI",
+  "players": [
+    {"number": 1, "name": "KIPER DEMO", "position": "GK", "x": 0.08, "y": 0.50},
+    {"number": 2, "name": "BEK KANAN", "position": "RB", "x": 0.28, "y": 0.18},
+    {"number": 3, "name": "BEK TENGAH 1", "position": "CB", "x": 0.25, "y": 0.39},
+    {"number": 4, "name": "BEK TENGAH 2", "position": "CB", "x": 0.25, "y": 0.61},
+    {"number": 5, "name": "BEK KIRI", "position": "LB", "x": 0.28, "y": 0.82},
+    {"number": 6, "name": "GELANDANG 1", "position": "CM", "x": 0.52, "y": 0.27},
+    {"number": 7, "name": "GELANDANG 2", "position": "CM", "x": 0.52, "y": 0.50},
+    {"number": 8, "name": "GELANDANG 3", "position": "AM", "x": 0.52, "y": 0.73},
+    {"number": 9, "name": "SAYAP KANAN", "position": "RW", "x": 0.78, "y": 0.22},
+    {"number": 10, "name": "PENYERANG", "position": "ST", "x": 0.91, "y": 0.50},
+    {"number": 11, "name": "SAYAP KIRI", "position": "LW", "x": 0.78, "y": 0.78}
+  ]
+}
