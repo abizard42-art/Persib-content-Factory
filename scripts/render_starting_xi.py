@@ -61,7 +61,7 @@ def crop_circle(path, size):
 
 def draw_pitch(im, players, active):
     d = ImageDraw.Draw(im)
-    x0, y0, x1, y1 = 64, 440, 470, 1165
+    x0, y0, x1, y1 = 64, 440, 470, 1285
     rounded(d, (x0, y0, x1, y1), 18, (13, 59, 48), (105, 166, 143), 3)
     d.rectangle((x0+2, y0+2, x1-2, y1-2), outline=(177, 222, 203), width=2)
     d.line((x0, (y0+y1)//2, x1, (y0+y1)//2), fill=(177, 222, 203), width=2)
@@ -125,7 +125,7 @@ def render_frame(players, title, revealed_count, current_idx, current_progress, 
     d.text((857, 105), title.upper(), font=font(22, True), fill=WHITE, anchor="mm")
     d.rectangle((0, 242, W, 250), fill=BLUE)
     # visual panel
-    rounded(d, (48, 285, 1032, 1215), 26, PANEL, (39, 66, 91), 3)
+    rounded(d, (48, 285, 1032, 1335), 26, PANEL, (39, 66, 91), 3)
     d.text((82, 325), "STARTING XI REVEAL", font=font(23, True), fill=(103, 190, 255))
     d.text((82, 370), "11 PEMAIN • SATU PER SATU", font=font(34, True), fill=WHITE)
     draw_pitch(im, players, current_idx if current_idx >= 0 else -1)
@@ -144,15 +144,15 @@ def render_frame(players, title, revealed_count, current_idx, current_progress, 
             progress = 0.0
         draw_card(im, d, p, i, card_x, y, card_w, card_h, progress, i == current_idx)
     # host placeholder
-    rounded(d, (48, 1250, 1032, 1850), 26, (9, 17, 29), (39, 66, 91), 3)
-    d.text((82, 1295), "BOBOTOH CASUALS HOST", font=font(23, True), fill=(103, 190, 255))
+    rounded(d, (48, 1370, 1032, 1850), 26, (9, 17, 29), (39, 66, 91), 3)
+    d.text((82, 1400), "BOBOTOH CASUALS HOST", font=font(23, True), fill=(103, 190, 255))
     # silhouette placeholder, intentionally not final chibi artwork
-    d.ellipse((430, 1370, 650, 1590), fill=(201, 143, 104), outline=(119, 79, 58), width=5)
-    d.arc((405, 1345, 675, 1535), 180, 355, fill=(22, 24, 30), width=42)
-    rounded(d, (355, 1570, 725, 1795), 70, (18, 42, 65), (66, 112, 146), 5)
-    rounded(d, (660, 1600, 730, 1670), 34, (10, 49, 87), (95, 185, 245), 3)
-    d.text((695, 1635), "FCC", font=font(18, True), fill=WHITE, anchor="mm")
-    d.text((540, 1810), "HOST PLACEHOLDER • MASTER CHIBI MENYUSUL", font=font(18, True), fill=MUTED, anchor="mm")
+    d.ellipse((430, 1450, 650, 1670), fill=(201, 143, 104), outline=(119, 79, 58), width=5)
+    d.arc((405, 1425, 675, 1615), 180, 355, fill=(22, 24, 30), width=42)
+    rounded(d, (355, 1650, 725, 1800), 70, (18, 42, 65), (66, 112, 146), 5)
+    rounded(d, (660, 1670, 730, 1740), 34, (10, 49, 87), (95, 185, 245), 3)
+    d.text((695, 1705), "FCC", font=font(18, True), fill=WHITE, anchor="mm")
+    d.text((540, 1815), "HOST PLACEHOLDER • MASTER CHIBI MENYUSUL", font=font(18, True), fill=MUTED, anchor="mm")
     d.text((540, 1888), "DEMO LINEUP — BUKAN SUSUNAN RESMI", font=font(17, True), fill=(122, 145, 166), anchor="mm")
     return im
 
