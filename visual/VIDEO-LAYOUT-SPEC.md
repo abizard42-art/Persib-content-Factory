@@ -12,8 +12,8 @@ Status: **DRAFT — layout direction agreed; visual implementation pending edito
 | Zone | Height | Purpose |
 |---|---:|---|
 | Header + category tab | 12.5% | Persistent channel identity and changing content category |
-| Main visual panel | 35% | Photos, match moments, stats, tables, maps, or tactical diagrams |
-| Chibi host / narration | 52.5% | Consistent Bobotoh Casuals host, expressions and gestures support narration |
+| Main visual panel | 41.25% | Photos, match moments, stats, tables, maps, or tactical diagrams; expanded for clearer analysis |
+| Chibi host / narration | 46.25% | Consistent Bobotoh Casuals host; slightly smaller so the main visual has more room |
 
 Percentages are initial layout proportions, not locked pixel measurements. Revisit after the first phone preview.
 
@@ -40,6 +40,7 @@ Do not force every episode into the same visual type. Keep text short enough to 
 
 ## 5. Chibi host
 - One consistent Bobotoh Casuals character, shown in the lower host zone.
+- Reduce the host zone by approximately 6.25 percentage points (from 52.5% to 46.25%) and transfer that space to the central visual panel.
 - Character direction: Bandung casual / awayday terrace style; technical parka, cargo trousers, retro/outdoor sneakers, small sling bag, Persib-blue and white accents.
 - Permanent sleeve identity: original circular **FLOWER CITY CASUALS** concept patch. This is a channel character design, not an official club or community emblem.
 - Use one master character sheet containing multiple expressions/poses. Keep face, hair, clothing, colors, and patch consistent between expressions.
@@ -75,11 +76,12 @@ For the STARTING XI category, reveal the formation player by player rather than 
 
 
 ### Layout composition for the lineup reveal
-- Keep the pitch on the **left half** of the main visual panel.
-- Place compact player reveal cards in a neat column on the **right half**, aligned by line/role where possible.
+- Keep the pitch in portrait orientation: the opponent goal is at the top and our goalkeeper is at the bottom.
+- Arrange the formation in horizontal lines stacked **from top to bottom** (forwards, midfield, defence, goalkeeper), not as a left-to-right sequence across the screen.
+- Keep compact player reveal cards in a neat column beside the vertical pitch, aligned by line/role where possible.
 - Each card flips to reveal: small portrait thumbnail on its left edge, shirt number, then player name and short position label.
-- When a card reveals, illuminate the matching player's marker on the left-side pitch; then return it to the normal state.
-- For the final hold, show all 11 markers on the pitch and all 11 compact cards together. If text becomes too small at phone size, split the reveal into defensive, midfield, and attacking groups rather than shrinking labels.
+- When a card reveals, illuminate the matching player's marker on the pitch; then return it to the normal state.
+- For the final hold, show all 11 markers on the vertical pitch and all 11 compact cards together. If text becomes too small at phone size, split the reveal into defensive, midfield, and attacking groups rather than shrinking labels.
 - The flip should reveal the actual player information on the reverse face; do not use a meaningless mirrored name or a card that only spins decoratively.
 
 ### Data per player
