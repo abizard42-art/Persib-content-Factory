@@ -3,17 +3,23 @@
 ## Tujuan
 Jalur cepat untuk menyusun prediksi starting XI Persib tanpa mengharuskan editor mengisi Selection Template panjang. Riset dilakukan oleh asisten saat diminta, menggunakan informasi terkini yang dapat diperiksa. GitHub menyimpan pedoman kerja; GitHub Actions tidak mengklaim dapat memverifikasi kondisi pemain secara mandiri.
 
+## Konteks kepelatihan
+- Acuan awal musim 2026/2027: Igor Tolic adalah pelatih kepala Persib; Bojan Hodak menjadi penasihat teknik, bukan pelatih kepala aktif. Rujukan: pengumuman klub yang dikutip I.League pada 28 Mei 2026.
+- Konteks ini bukan data permanen. Sebelum setiap analisis, verifikasi kembali siapa pelatih kepala aktif dan staf yang mendampingi pertandingan.
+- Analisis taktik harus membaca pendekatan Igor Tolic dari pertandingan dan pernyataan terbaru, bukan mengasumsikan sistem atau formasi tetap. Evaluasi pilihan pemain, struktur build-up, pressing, transisi, lebar serangan, dan penyesuaian lawan berdasarkan bukti pertandingan.
+
 ## Pemicu
-Gunakan jalur ini ketika editor meminta prediksi starting XI Persib, perkiraan susunan pemain untuk pertandingan berikutnya, atau analisis pilihan pemain, rotasi, dan formasi menjelang laga.
+Gunakan jalur cepat ini ketika editor meminta prediksi starting XI Persib, perkiraan susunan pemain untuk pertandingan berikutnya, atau analisis pilihan pemain, rotasi, dan formasi menjelang laga.
 
 ## Langkah riset wajib
 1. Pastikan pertandingan: lawan, kompetisi, tanggal, waktu, dan venue. Periksa perubahan jadwal.
-2. Periksa informasi skuad terbaru dari kanal resmi klub, pelatih, dan kompetisi.
-3. Cross-check kondisi pemain melalui media kredibel. Catat tanggal publikasi dan bedakan cedera terkonfirmasi, skorsing, pemulihan, keraguan kebugaran, dan rumor.
-4. Periksa menit bermain, susunan pemain/laga terakhir, jadwal berikutnya, jeda pemulihan, perjalanan, serta potensi rotasi.
-5. Analisis karakter lawan dan kebutuhan taktik: build-up, pressing, lebar serangan, duel udara, transisi, dan ancaman utama.
-6. Susun XI paling memungkinkan, formasi, opsi bangku cadangan jika datanya tersedia, dan alternatif bila ada pemain diragukan.
-7. Cantumkan sumber untuk klaim penting, tanggal publikasi/akses, tingkat keyakinan, serta hal yang belum dapat dipastikan.
+2. Verifikasi pelatih kepala aktif, staf yang memimpin di pinggir lapangan, dan konteks konferensi pers terbaru.
+3. Periksa informasi skuad terbaru dari kanal resmi klub, pelatih, dan kompetisi.
+4. Cross-check kondisi pemain melalui media kredibel. Catat tanggal publikasi dan bedakan cedera terkonfirmasi, skorsing, pemulihan, keraguan kebugaran, dan rumor.
+5. Periksa menit bermain, susunan pemain/laga terakhir, jadwal berikutnya, jeda pemulihan, perjalanan, serta potensi rotasi.
+6. Analisis karakter lawan dan kebutuhan taktik: build-up, pressing, lebar serangan, duel udara, transisi, dan ancaman utama.
+7. Susun XI paling memungkinkan, formasi, opsi bangku cadangan jika datanya tersedia, dan alternatif bila ada pemain diragukan.
+8. Cantumkan sumber untuk klaim penting, tanggal publikasi/akses, tingkat keyakinan, serta hal yang belum dapat dipastikan.
 
 ## Hierarki sumber
 1. Pengumuman resmi Persib, konferensi pers/pelatih, laporan pertandingan resmi, dan informasi operator kompetisi.
@@ -25,6 +31,7 @@ Jika sumber bertentangan, tampilkan perbedaannya dan utamakan pernyataan primer 
 
 ## Format hasil standar
 - Pertandingan dan konteks jadwal
+- Pelatih/staf aktif dan konteks taktik terbaru
 - Status pemain: tersedia / absen terkonfirmasi / diragukan / belum diketahui, disertai alasan dan sumber
 - Prediksi formasi dan starting XI
 - Alasan pemilihan pemain per lini
