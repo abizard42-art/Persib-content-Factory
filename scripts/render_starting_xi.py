@@ -66,8 +66,8 @@ def draw_pitch(im, players, active):
     d.rectangle((x0+2, y0+2, x1-2, y1-2), outline=(177, 222, 203), width=2)
     d.line((x0, (y0+y1)//2, x1, (y0+y1)//2), fill=(177, 222, 203), width=2)
     d.ellipse((x0+110, (y0+y1)//2-110, x0+296, (y0+y1)//2+110), outline=(177, 222, 203), width=2)
-    d.rectangle((x0, y0+210, x0+95, y1-210), outline=(177, 222, 203), width=2)
-    d.rectangle((x1-95, y0+210, x1, y1-210), outline=(177, 222, 203), width=2)
+    d.rectangle((x0+95, y0, x1-95, y0+150), outline=(177, 222, 203), width=2)
+    d.rectangle((x0+95, y1-150, x1-95, y1), outline=(177, 222, 203), width=2)
     for i, p in enumerate(players):
         px = x0 + int(float(p.get("x", .5)) * (x1-x0))
         py = y0 + int(float(p.get("y", .5)) * (y1-y0))
