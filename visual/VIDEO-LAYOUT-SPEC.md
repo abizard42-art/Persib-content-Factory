@@ -113,3 +113,20 @@ For the STARTING XI category, reveal the formation player by player rather than 
 
 ## 9. Next implementation step
 Prepare a clean production asset pack from the approved master character reference: full-body host cutout plus six consistent expression/pose assets, with transparent backgrounds where practical. Do not use the placeholder text “Raka” as the Persib host's name. Then integrate the static host into the approved 9:16 layout and proceed to idle/blink/mouth/gesture animation only after checking the first integrated preview.
+
+## Chibi Host Master Sheet — Production Candidate (2026-11-23)
+
+A new square character model sheet has been generated for the Persib Content Factory host. It contains:
+- Main full-body hero pose in Bandung Casuals × gorpcore styling
+- Six expression references: NORMAL, HAPPY, ANALYSIS, FIRED-UP, SHOCKED, DISAPPOINTED
+- Front, side, rear, and profile turnaround views
+- Sleeve patch concept and color palette
+
+**Asset status:** generated production candidate; use as the visual consistency reference pending final human review of fine details. Do not treat generated lettering or any crest-like mark as an official club-issued logo. The sleeve patch is an original FLOWER CITY CASUALS concept.
+
+**Character consistency rules:**
+- Keep face, hair silhouette, body proportions, dark technical parka, cargo pants, outdoor/retro sneakers, sling bag, and blue accents consistent.
+- Use the six expression references to guide face and pose changes; do not redesign the character between episodes.
+- Keep the approved video layout proportions unchanged: header/category 12.5%, main visual panel 47.5%, chibi host zone 40%.
+- This sheet is a visual reference, not a set of separated transparent animation layers. Prepare clean individual character/expression assets before rigging or lip-sync animation.
+
