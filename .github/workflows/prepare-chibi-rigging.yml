@@ -1,0 +1,39 @@
+name: Prepare Chibi Rigging Layers
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  isolate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-chibi.txt
+
+      - name: Export isolated head and body
+        run: python scripts/prepare_chibi_rigging.py
+
+      - name: Commit generated rigging layers
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/chibi/rigging
+          if git diff --cached --quiet; then
+            echo "No generated rigging layer changes."
+          else
+            git commit -m "Generate isolated FCC chibi head and body layers"
+            git push
+          fi
